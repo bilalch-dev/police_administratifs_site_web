@@ -1,30 +1,84 @@
-# Site Web - Police Administrative
+# 🏛️ البوابة الرقمية للشرطة الإدارية الجماعية | Municipal Administrative Police Web Portal
 
-Ce projet est un site web d'information dédié à la présentation, la définition et le rôle de la **Police Administrative** ainsi que ses responsabilités et domaines d'intervention.
+موقع إلكتروني تفاعلي متكامل للتعريف بالشرطة الإدارية الجماعية بالمغرب، أهدافها، مجالات تدخلها، إطارها القانوني، ومساطر الترخيص والشكايات الموجهة للمواطنين والمهنيين.
 
-## 📁 Structure du Projet
+مستوحى من **[الدليل الرسمي للشرطة الإدارية الجماعية](Guide_police_administrative.pdf)** الصادر عن المديرية العامة للجماعات الترابية.
+
+---
+
+## 📁 هيكلية المشروع (Project Architecture)
 
 ```text
 police_administratifs_site_web/
-├── css/
-│   └── style.css                   # Feuilles de styles CSS
-├── js/
-│   └── script.js                   # Scripts JavaScript
-├── index.html                      # Page principale
-├── Guide_police_administrative.pdf # Document source d'information
-└── README.md                       # Documentation du projet
+├── 📄 index.html              # الصفحة الرئيسية (الصفحة الشاملة، الإحصائيات، الخدمات السريعة)
+├── 📄 legal.html              # الإطار القانوني والأجهزة الممارسة (السلطات، المبادئ، التدابير)
+├── 📄 domains.html            # مجالات التدخل (الصحة والنظافة والبيئة، السير والجولان، الشرطة القروية)
+├── 📄 procedures.html         # المساطر والترخيصات الجماعية (دليل الترخيصات والمؤسسات المرتبة)
+├── 📄 complaints.html         # بوابة الشكايات والبلاغات (إيداع بلاغ مواطن، تتبع الشكاية)
+├── 📄 resources.html          # المكتبة الرقمية ومعجم المصطلحات (البحث في المصطلحات وتنزيل الدليل)
+│
+├── 📁 css/
+│   ├── 🎨 design-system.css   # متغيرات التصميم (HSL Tokens)، الخطوط (Cairo & Tajawal)، وضع الليل والنهار
+│   ├── 🎨 style.css           # المكونات العامة (الهيدر، القائمة الجانبية، الفوتر، الأزرار والتنبيهات)
+│   └── 🎨 pages.css           # تنسيقات الصفحات التفاعلية، البطاقات، والنماذج
+│
+├── 📁 js/
+│   ├── ⚡ data.js             # قاعدة البيانات المحلية (المجالات، القوانين، المساطر، المعجم)
+│   ├── ⚡ main.js             # البرمجة العامة (التبديل بين الليل والنهار، البحث الشامل، التنقل)
+│   └── 📁 pages/
+│       ├── ⚡ home.js         # محرك الصفحة الرئيسية والتفاعلات
+│       ├── ⚡ domains.js      # نظام تصفية مجالات التدخل وعرض التفاصيل
+│       ├── ⚡ procedures.js   # دليل الوثائق ورخص احتلال الملك العمومي
+│       ├── ⚡ complaints.js   # تتبع الشكايات وتوليد رمز التتبع الفريد
+│       └── ⚡ resources.js    # محرك البحث الفوري في معجم المصطلحات القانونية
+│
+└── 📄 Guide_police_administrative.pdf # وثيقة الدليل الرسمي
 ```
 
-## 🛠️ Technologies Utilisées
+---
 
-- **HTML5** : Structuration du contenu web
-- **CSS3** : Mise en page et design visuel
-- **JavaScript** : Interactivité et dynamisme du site
+## 🌟 أهم ميزات الموقع (Core Features)
 
-## 📖 Fonctionnalités à venir
+1. **الصفحة الرئيسية (Home)**:
+   - واجهة عصرية تدعم الاتجاه العربي (RTL) مع تصميم زجاجي (Glassmorphic design).
+   - بطاقات سريعة للوصول إلى الخدمات ومحرك بحث فوري.
+   - إحصائيات تفاعلية ونشرات إخبارية عاجلة.
 
-- Définition globale et principes fondamentaux de la police administrative.
-- Distinction entre police administrative et police judiciaire.
-- Présentation des domaines d'intervention (ordre public, sécurité, salubrité, tranquillité).
-- Responsabilités et pouvoirs des autorités administratives (Maires, Préfets, etc.).
-- Module interactif de consultation des fiches et guides pratiques.
+2. **الإطار القانوني والأجهزة (Legal Framework & Authorities)**:
+   - شرح شامل لمفهوم الشرطة الإدارية العامة والخاصة.
+   - توزيع الاختصاصات بين رئيس المجلس الجماعي، رجال السلطة (الباشا/القايد)، والمجلس الجماعي.
+   - قواعد الحوكمة القانونية (مبدأ عدم التناقض، عدم التطاول، وعدم الحلول).
+   - تدابير الممارسة: التدابير التنظيمية، التدابير الفردية، والتنفيذ التلقائي (Exécution d'office).
+
+3. **مجالات التدخل (Intervention Domains)**:
+   - **الصحة والنظافة وحماية البيئة**: سلامة الأغذية، الوقاية الصحية، المقابر ومرفق نقل الجثث.
+   - **السير والجولان والسلامة الطرقية**: التشوير، المحطات الطرقية، واحتلال الملك العمومي.
+   - **الشرطة القروية والسكينة العامة**: محاربة داء السعار، الكلاب الضالة، وحماية المحاصيل.
+
+4. **المساطر والترخيصات (Procedures & Permits)**:
+   - دليل الحصول على رخص الأنشطة التجارية والصحية.
+   - تصنيف المؤسسات المرتبة (المضرة أو المزعجة أو الخطيرة - الدرجة 1، 2، و 3).
+   - قوائم الوثائق المطلوبة لكل رخصة وآجال المعالجة.
+
+5. **بوابة الشكايات والبلاغات (Citizen Complaints Portal)**:
+   - نموذج تفاعلي لإيداع بلاغ عن مخالفات النظافة أو السير أو الإزعاج.
+   - توليد **رمز تتبع خاص (Tracking ID)** لكل شكاية وتتبع حالتها فورياً.
+
+6. **المكتبة الرقمية والمعجم (Glossary & Library)**:
+   - محرك بحث حي في **معجم المصطلحات القانونية** وتصفيتها بالأحرف.
+   - معاينة وتنزيل مباشر لـ [الدليل الرسمي للشرطة الإدارية الجماعية](Guide_police_administrative.pdf).
+
+---
+
+## 🛠️ التقنيات المستخدمة (Tech Stack)
+
+- **HTML5 Semantic Standard** (يدعم SEO والوصول الشامل)
+- **CSS3 Vanilla** (نظام تصميم مرن باستخدام HSL Theme Tokens ودعم الوضع الليلي والنهاري)
+- **JavaScript Vanilla ES6+** (أداء عالي وسريع بدون مكتبات ثقيلة)
+- **Google Fonts** (خطوط Cairo و Tajawal الاحترافية للغة العربية)
+
+---
+
+## 🚀 تشغيل المشروع (How to Run)
+
+لا يتطلب المشروع أي خوادم أو أدوات بناء معقدة. يمكنك فتح أي ملف من ملفات `.html` (مثل `index.html`) مباشرة في متصفح حديث، أو استخدام خادم محلي مثل `Live Server` في VS Code / Antigravity.
