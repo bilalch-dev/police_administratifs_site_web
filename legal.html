@@ -1,19 +1,125 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الإطار القانوني والأجهزة | الشرطة الإدارية الجماعية</title>
-    <meta name="description" content="الإطار القانوني، مفاهيم الشرطة الإدارية، والأجهزة والجهات الممارسة لسلطات الشرطة الإدارية.">
+    <title>الإطار القانوني والأجهزة الممارسة | الشرطة الإدارية الجماعية</title>
+    <meta name="description" content="الدليل القانوني الشامل لمفهوم الشرطة الإدارية الجماعية، الاختصاصات المسندة لرئيس الجماعة، السلطات المحلية، والمجلس الجماعي.">
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
+
+    <!-- Header Navigation -->
     <header id="main-header"></header>
-    <main id="main-content"></main>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header Banner -->
+        <section class="hero-section" style="padding: 3rem 0; background: linear-gradient(135deg, rgba(13,148,136,0.08) 0%, rgba(15,23,42,0.04) 100%);">
+            <div class="container">
+                <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:var(--text-light); margin-bottom:1rem;">
+                    <a href="index.html">الرئيسية</a> <span>‹</span> <span style="color:var(--primary-light); font-weight:700;">الإطار القانوني والأجهزة</span>
+                </div>
+                
+                <span class="section-tag">النصوص التشريعية والميثاق الجماعي</span>
+                <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:1rem;">
+                    الإطار القانوني والأجهزة الممارسة للشرطة الإدارية
+                </h1>
+                <p class="hero-description" style="max-width:850px; margin-bottom:0;">
+                    منظومة قانونية محكمة تستمد قوتها من الدستور والميثاق الجماعي لتنظيم التدخل الإداري وتحديد حدود صلاحيات رئيس المجلس الجماعي، رجل السلطة المحلية، والمجلس الجماعي بما يضمن حماية حقوق وحريات الأفراد.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 1: Concept & Types -->
+        <section class="container" style="padding: 4rem 0;">
+            <div class="section-header">
+                <span class="section-tag">مفاهيم أساسية</span>
+                <h2 class="section-title">ما هي الشرطة الإدارية؟</h2>
+                <p class="section-desc">الوسيلة القانونية التي تبيح للإدارة التدخل للحفاظ على النظام العام بعناصره الثلاثة: الأمن العام، السكينة العامة، والصحة العمومية.</p>
+            </div>
+
+            <div id="legal-concepts-container" class="domains-grid">
+                <!-- Concept cards rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- Section 2: Execution Measures -->
+        <section style="background:var(--bg-surface); padding: 4.5rem 0; border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">تدابير الممارسة العملية</span>
+                    <h2 class="section-title">وسائل وآليات ممارسة الشرطة الإدارية</h2>
+                    <p class="section-desc">تتم ممارسة الشرطة الإدارية الجماعية عبر ثلاثة وسائل رئيسية حددها القانون والأنظمة الجاري بها العمل.</p>
+                </div>
+
+                <div id="measures-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
+                    <!-- Execution measures rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Authorities Division -->
+        <section id="authorities" class="container" style="padding: 4.5rem 0;">
+            <div class="section-header">
+                <span class="section-tag">توزيع الاختصاصات</span>
+                <h2 class="section-title">الأجهزة والجهات الممارسة للشرطة الإدارية</h2>
+                <p class="section-desc">تفصيل دقيق لصلاحيات كل طرف لمنع التداخل والنزاع بين الجماعات الترابية والإدارة المحلية.</p>
+            </div>
+
+            <div id="authorities-detail-container">
+                <!-- Authority details rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- Section 4: Governance Principles -->
+        <section style="background:var(--bg-surface); padding: 4rem 0; border-top:1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">ضوابط عدم التداخل</span>
+                    <h2 class="section-title">المبادئ القانونية الثلاثة لضوابط الممارسة</h2>
+                    <p class="section-desc">مبادئ مؤطرة لخضوع الشرطة الإدارية المحلية للقانون ومنع التضارب مع القرارات الوطنية.</p>
+                </div>
+
+                <div id="governance-principles-container" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem;">
+                    <!-- Governance principles rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Official Document Download Banner -->
+        <section class="container" style="padding: 4rem 0;">
+            <div class="glass-panel" style="padding: 3rem; background: linear-gradient(135deg, #0b1329 0%, #152243 100%); color:#fff;">
+                <div style="display:grid; grid-template-columns: 1.5fr 0.5fr; gap:2rem; align-items:center;">
+                    <div>
+                        <span class="ticker-badge" style="background:var(--accent); color:#0f172a; margin-bottom:1rem; display:inline-block;">النص الكامل في الدليل</span>
+                        <h2 style="font-size:2rem; color:#fff; margin-bottom:1rem;">هل ترغب في قراءة النصوص الكاملة للمواد 37، 49، و50؟</h2>
+                        <p style="color:#cbd5e1; font-size:1.05rem; line-height:1.8; margin-bottom:1.5rem;">
+                            يتضمن الدليل الرسمي للشرطة الإدارية الجماعية الشرح الفقهي والقانوني والاجتهاد القضائي لكل مادة من مواد الميثاق الجماعي.
+                        </p>
+                        <a href="Guide_police_administrative.pdf" target="_blank" class="btn-accent">
+                            📄 فتح وتنزيل الدليل PDF
+                        </a>
+                    </div>
+                    <div style="text-align:center;">
+                        <span style="font-size:4rem;">📜</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
     <footer id="main-footer"></footer>
+
+    <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/pages/legal.js"></script>
+
 </body>
 </html>
