@@ -1,20 +1,204 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>البوابة الرسمية للشرطة الإدارية الجماعية | الصفحة الرئيسية</title>
-    <meta name="description" content="البوابة الرسمية للشرطة الإدارية الجماعية - تقديم خدمات الصحة، السير والجولان، الوقاية والترخيصات العمومية.">
+    <meta name="description" content="البوابة الرقمية التفاعلية الموحدة للشرطة الإدارية الجماعية: الصحة والنظافة، السير والجولان، الشرطة القروية، ودليل الترخيص والشكايات.">
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
+
+    <!-- Header Navigation (Rendered via JS) -->
     <header id="main-header"></header>
-    <main id="main-content"></main>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-grid">
+                
+                <!-- Hero Content -->
+                <div class="hero-text-content fade-in">
+                    <div class="hero-badge">
+                        <span>🛡️</span> البوابة الرقمية التفاعلية الموحدة
+                    </div>
+                    <h1 class="hero-title">
+                        دليلك الموثوق لفهم ممارسة <span>الشرطة الإدارية الجماعية</span>
+                    </h1>
+                    <p class="hero-description">
+                        مبادرة رقمية تهدف إلى تمكين المنتخبين، الممارسين، والمواطنين من الإلمام الشامل بالإطار القانوني للشرطة الإدارية الجماعية، مجالات تدخلها في الصحة العامة، السير والجولان، والسكينة العمومية.
+                    </p>
+                    <div class="hero-ctas">
+                        <a href="domains.html" class="btn-primary">
+                            <span>🏛️</span> استكشف مجالات التدخل
+                        </a>
+                        <a href="complaints.html" class="btn-accent">
+                            <span>📝</span> إيداع بلاغ أو شكاية
+                        </a>
+                        <a href="Guide_police_administrative.pdf" target="_blank" class="btn-outline">
+                            <span>📄</span> تحميل الدليل PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Card / Quick Interactive Search -->
+                <div class="hero-graphic-card animate-float">
+                    <div class="hero-card-header">
+                        <h4><span>🔍</span> البحث السريع في الدليل الجماعي</h4>
+                        <span class="ticker-badge" style="background:var(--primary-light); color:#fff;">محدث 2026</span>
+                    </div>
+
+                    <div class="hero-quick-search">
+                        <input type="text" id="hero-search-input" placeholder="ابحث عن مسطرة، رخصة، أو قانون..." autocomplete="off">
+                        <span class="search-icon">🔍</span>
+                    </div>
+
+                    <p style="font-size:0.875rem; color:var(--text-light); margin-bottom:0.75rem; font-weight:700;">الكلمات الأكثر بحثاً:</p>
+
+                    <div class="hero-pills">
+                        <span class="hero-pill" onclick="openSearchModalWithQuery('الصحة والنظافة')">الصحة والنظافة</span>
+                        <span class="hero-pill" onclick="openSearchModalWithQuery('احتلال الملك العمومي')">احتلال الملك العمومي</span>
+                        <span class="hero-pill" onclick="openSearchModalWithQuery('المؤسسات المرتبة')">المؤسسات المرتبة</span>
+                        <span class="hero-pill" onclick="openSearchModalWithQuery('الكلاب الضالة')">الكلاب الضالة</span>
+                        <span class="hero-pill" onclick="openSearchModalWithQuery('داء السعار')">داء السعار</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section container">
+            <div id="stats-grid-container" class="stats-grid">
+                <!-- Stat items populated dynamically by home.js -->
+            </div>
+        </section>
+
+        <!-- Featured Domains Section -->
+        <section class="domains-section container">
+            <div class="section-header">
+                <span class="section-tag">ميادين التدخل الأساسية</span>
+                <h2 class="section-title">مجالات الشرطة الإدارية الجماعية</h2>
+                <p class="section-desc">ارتكازاً على مقتضيات المواد 40، 49، و50 من الميثاق الجماعي، تتوزع الشرطة الإدارية الجماعية على ثلاثة مجالات حيوية ذات صلة بحياة المواطن اليومية.</p>
+            </div>
+
+            <div id="featured-domains-container" class="domains-grid">
+                <!-- Domain cards populated dynamically by home.js -->
+            </div>
+        </section>
+
+        <!-- Legal Framework Spotlight -->
+        <section class="legal-highlight-section">
+            <div class="container legal-grid">
+                
+                <div>
+                    <span class="section-tag">الحوكمة والتنظيم</span>
+                    <h2 class="section-title" style="text-align:right;">توزيع الاختصاصات والأجهزة الممارسة</h2>
+                    <p style="color:var(--text-muted); font-size:1.05rem; margin-bottom:2rem; line-height:1.8;">
+                        لضمان عدم تداخل السلطات، حصر المشرع الاختصاصات بين رئيس المجلس الجماعي، سلطات الإدارة الترابية (الباشوات والقواد)، والمجلس الجماعي ضمن ضوابط قانونية صارمة.
+                    </p>
+
+                    <div id="legal-summary-container" class="legal-feature-list">
+                        <!-- Legal summary items populated dynamically -->
+                    </div>
+
+                    <div style="margin-top:2rem;">
+                        <a href="legal.html" class="btn-primary">
+                            تعرف على الإطار القانوني والمبادئ العامة ←
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Governance Principles Card -->
+                <div class="glass-panel" style="padding:2.5rem;">
+                    <h3 style="font-size:1.4rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem; color:var(--primary-light);">
+                        <span>⚖️</span> المبادئ الأساسية لضبط الاختصاص
+                    </h3>
+                    
+                    <div style="display:flex; flex-direction:column; gap:1.25rem;">
+                        <div style="padding:1rem; background:var(--bg-main); border-radius:var(--radius-md); border-right:4px solid var(--primary-light);">
+                            <h4 style="font-size:1.1rem; color:var(--text-main);">1. مبدأ عدم التناقض</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.25rem;">احترام القرارات الجماعية للمقتضيات التنظيمية الصادرة على المستوى الوطني.</p>
+                        </div>
+
+                        <div style="padding:1rem; background:var(--bg-main); border-radius:var(--radius-md); border-right:4px solid var(--accent);">
+                            <h4 style="font-size:1.1rem; color:var(--text-main);">2. مبدأ عدم التطاول</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.25rem;">منع ممارسة الاختصاصات الحصرية المسندة للسلطات الوطنية والشرطة الإدارية العامة.</p>
+                        </div>
+
+                        <div style="padding:1rem; background:var(--bg-main); border-radius:var(--radius-md); border-right:4px solid var(--info);">
+                            <h4 style="font-size:1.1rem; color:var(--text-main);">3. مبدأ عدم الحلول</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.25rem;">منع السلطات الوطنية من الحلول محل الجماعة إلا بنص قانوني صريح.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Official PDF Download Banner -->
+        <section class="pdf-banner-section container">
+            <div class="pdf-banner-card">
+                <div class="pdf-banner-content">
+                    <h3>حمّل النسخة الكاملة من الدليل الرسمي للشرطة الإدارية الجماعية</h3>
+                    <p>وثيقة مرجعية شاملة أعدتها المديرية العامة للجماعات الترابية لتمكين المنتخبين والممارسين من الإلمام بكافة ضوابط وميادين الشرطة الإدارية الجماعية.</p>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                        <a href="Guide_police_administrative.pdf" target="_blank" class="btn-accent">
+                            📥 تنزيل الدليل الرسمي (PDF)
+                        </a>
+                        <a href="resources.html" class="btn-outline" style="border-color:#ffffff; color:#ffffff;">
+                            📚 تصفح المعجم القانوني
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pdf-banner-action">
+                    <div style="background:rgba(255,255,255,0.1); border:1px dashed rgba(255,255,255,0.25); border-radius:var(--radius-lg); padding:1.5rem; text-align:center;">
+                        <span style="font-size:3.5rem;">📘</span>
+                        <h4 style="color:#ffffff; margin-top:0.5rem;">28 صفحة</h4>
+                        <p style="font-size:0.85rem; color:#cbd5e1;">شامل لكل المساطر والنصوص</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Citizen Complaints Action Banner -->
+        <section class="container" style="margin-bottom: 4rem;">
+            <div class="glass-panel" style="padding: 3rem; text-align: center; background: linear-gradient(135deg, rgba(13,148,136,0.08) 0%, rgba(245,158,11,0.08) 100%);">
+                <span class="section-tag">خدمة المواطن</span>
+                <h2 style="font-size: 2rem; margin: 0.75rem 0;">هل لاحظت مخالفة في النظافة أو السير أو السكينة؟</h2>
+                <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 1.5rem auto; font-size: 1.05rem;">
+                    يمكنك الآن إيداع بلاغ فوري أو شكاية مباشرة عبر البوابة الرقمية، والحصول على رمز تتبع لمتابعة المعالجة خطوة بخطوة.
+                </p>
+                <a href="complaints.html" class="btn-primary" style="font-size: 1.05rem; padding: 0.85rem 2rem;">
+                    🚀 إيداع شكاية أو بلاغ الآن
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component (Rendered via JS) -->
     <footer id="main-footer"></footer>
+
+    <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script src="js/pages/home.js"></script>
+
+    <script>
+        function openSearchModalWithQuery(query) {
+            openSearchModal();
+            const modalInput = document.getElementById('modal-search-input');
+            if (modalInput) {
+                modalInput.value = query;
+                handleModalSearch(query);
+            }
+        }
+    </script>
 </body>
 </html>
