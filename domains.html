@@ -1,20 +1,152 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مجالات الشرطة الإدارية | الصحة، السير والجولان والشرطة القروية</title>
-    <meta name="description" content="مجالات التدخل: الصحة والنظافة وحماية البيئة، شرطة السير والجولان، والشرطة القروية.">
+    <title>مجالات الشرطة الإدارية | الصحة، السير والجولان، والشرطة القروية</title>
+    <meta name="description" content="تصفح جميع مجالات الشرطة الإدارية الجماعية: الصحة والنظافة وحماية البيئة، السير والجولان والتتشوير، الشرطة القروية، والمؤسسات المرتبة.">
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .domain-tab-btn {
+            padding: 0.65rem 1.4rem;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .domain-tab-btn:hover, .domain-tab-btn.active {
+            background: var(--primary-light);
+            color: #ffffff;
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-sm);
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Header Navigation -->
     <header id="main-header"></header>
-    <main id="main-content"></main>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header Banner -->
+        <section class="hero-section" style="padding: 3rem 0; background: linear-gradient(135deg, rgba(13,148,136,0.08) 0%, rgba(245,158,11,0.05) 100%);">
+            <div class="container">
+                <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:var(--text-light); margin-bottom:1rem;">
+                    <a href="index.html">الرئيسية</a> <span>‹</span> <span style="color:var(--primary-light); font-weight:700;">مجالات التدخل</span>
+                </div>
+                
+                <span class="section-tag">الدليل العملي والمجالي</span>
+                <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:1rem;">
+                    مجالات وميادين التدخل للشرطة الإدارية الجماعية
+                </h1>
+                <p class="hero-description" style="max-width:850px; margin-bottom:0;">
+                    جرد شامل ومفصل لجميع القطاعات الحيوية المنصوص عليها في الميثاق الجماعي والأنظمة العامة لحفظ الصحة والنظافة العامة، السلامة الطرقية، حماية البيئة والوسط القروي.
+                </p>
+            </div>
+        </section>
+
+        <!-- Filter Tabs & Grid -->
+        <section class="container" style="padding: 3.5rem 0;">
+            
+            <!-- Category Filter Controls -->
+            <div style="display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; margin-bottom:3rem;">
+                <button class="domain-tab-btn active" onclick="filterDomains('all', this)">🌐 جميع المجالات (10)</button>
+                <button class="domain-tab-btn" onclick="filterDomains('health', this)">🏥 الصحة والنظافة والبيئة</button>
+                <button class="domain-tab-btn" onclick="filterDomains('traffic', this)">🚦 السير والجولان والملك العمومي</button>
+                <button class="domain-tab-btn" onclick="filterDomains('rural', this)">🌾 الشرطة القروية والسكينة</button>
+            </div>
+
+            <!-- Detailed Grid Container -->
+            <div id="detailed-domains-grid" class="domains-grid">
+                <!-- Domain cards rendered dynamically -->
+            </div>
+
+        </section>
+
+        <!-- Spotlight Section: Classified Establishments (المؤسسات المرتبة) -->
+        <section style="background:var(--bg-surface); padding: 4.5rem 0; border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">الأنشطة المزعجة والخطيرة</span>
+                    <h2 class="section-title">تصنيف المؤسسات المرتبة (Établissements Classés)</h2>
+                    <p class="section-desc">وفقاً لظهير 1914 والمادة 50، تنقسم المؤسسات المضرة أو الخطيرة إلى 3 درجات محددة لحماية السكان من التلوث والإزعاج.</p>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.75rem;">
+                    
+                    <!-- Class 1 -->
+                    <div class="glass-panel" style="padding:2rem; border-top:5px solid var(--danger);">
+                        <span class="ticker-badge" style="background:var(--danger); color:#fff; margin-bottom:1rem; display:inline-block;">الدرجة الأولى (أعلى درجة خطورة)</span>
+                        <h3 style="font-size:1.3rem; margin-bottom:0.75rem;">مؤسسات الدرجة الأولى</h3>
+                        <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.7; margin-bottom:1rem;">
+                            يختص بالترخيص بفتحها وإغلاقها **وزير الأشغال العمومية**. وهي المنشآت التي قد تحدِث تلوثاً حاداً أو مخاطر كبرى على الصحة العامة.
+                        </p>
+                        <div style="background:var(--bg-main); padding:0.75rem; border-radius:var(--radius-md); font-size:0.85rem; color:var(--text-light);">
+                            <strong>أمثلة:</strong> معامل الأسمدة، الكيماويات، المصانع الضخمة الملوثة للمياه والهواء.
+                        </div>
+                    </div>
+
+                    <!-- Class 2 -->
+                    <div class="glass-panel" style="padding:2rem; border-top:5px solid var(--warning);">
+                        <span class="ticker-badge" style="background:var(--warning); color:#0f172a; margin-bottom:1rem; display:inline-block;">الدرجة الثانية (خطورة متوسطة)</span>
+                        <h3 style="font-size:1.3rem; margin-bottom:0.75rem;">مؤسسات الدرجة الثانية</h3>
+                        <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.7; margin-bottom:1rem;">
+                            يرجع الاختصاص في الترخيص بها وإغلاقها عند المخالفة إلى **رئيس المجلس الجماعي** لحفظ الصحة العامة والبيئة.
+                        </p>
+                        <div style="background:var(--bg-main); padding:0.75rem; border-radius:var(--radius-md); font-size:0.85rem; color:var(--text-light);">
+                            <strong>أمثلة:</strong> مستودعات المحروقات، ورشات النجارة والمستودعات التجارية الكبرى.
+                        </div>
+                    </div>
+
+                    <!-- Class 3 -->
+                    <div class="glass-panel" style="padding:2rem; border-top:5px solid var(--success);">
+                        <span class="ticker-badge" style="background:var(--success); color:#fff; margin-bottom:1rem; display:inline-block;">الدرجة الثالثة (خطورة محدودة)</span>
+                        <h3 style="font-size:1.3rem; margin-bottom:0.75rem;">مؤسسات الدرجة الثالثة</h3>
+                        <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.7; margin-bottom:1rem;">
+                            يعود الاختصاص فيها إلى **رئيس الجماعة**، وتفتح بمجرد تقديم تصريح محدد إلى السلطات الجماعية وتسلم وصل.
+                        </p>
+                        <div style="background:var(--bg-main); padding:0.75rem; border-radius:var(--radius-md); font-size:0.85rem; color:var(--text-light);">
+                            <strong>أمثلة:</strong> ورشات الصباغة، الحدادة الصغرى والمحلات التجارية البسيطة.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PDF Reference Download Banner -->
+        <section class="container" style="padding: 4rem 0;">
+            <div class="pdf-banner-card">
+                <div class="pdf-banner-content">
+                    <h3>استكشف جميع المساطر والمواد في الدليل PDF الرسمي</h3>
+                    <p>يتضمن الدليل جميع الجزئيات والتفاصيل المتعلقة بإجراءات التنفيذ التلقائي، رخص الدفن والنقل، وعقوبات مخالفي القرارات الجماعية.</p>
+                    <a href="Guide_police_administrative.pdf" target="_blank" class="btn-accent">
+                        📥 تحميل وثيقة الدليل (PDF)
+                    </a>
+                </div>
+                <div class="pdf-banner-action">
+                    <span style="font-size:4rem;">📊</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
     <footer id="main-footer"></footer>
+
+    <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script src="js/pages/domains.js"></script>
+
 </body>
 </html>
