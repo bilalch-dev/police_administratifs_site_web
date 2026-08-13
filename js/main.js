@@ -1,13 +1,32 @@
 /* ==========================================================================
-   GLOBAL APP LOGIC - Theme Switcher, Shared Header/Footer, Search Modal
+   GLOBAL APP LOGIC - Language Switcher (AR/FR), Theme Manager, Shared Header/Footer
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initLanguageManager();
   initThemeManager();
   renderSharedHeader();
   renderSharedFooter();
   initGlobalSearchModal();
 });
+
+/* Language Manager */
+function initLanguageManager() {
+  const currentLang = localStorage.getItem('police_portal_lang') || 'ar';
+  applyLanguageSettings(currentLang);
+}
+
+function toggleLanguage() {
+  const current = localStorage.getItem('police_portal_lang') || 'ar';
+  const next = current === 'ar' ? 'fr' : 'ar';
+  localStorage.setItem('police_portal_lang', next);
+  location.reload();
+}
+
+function applyLanguageSettings(lang) {
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+}
 
 /* Theme Manager */
 function initThemeManager() {
@@ -28,7 +47,7 @@ function updateThemeIcon(theme) {
   const btn = document.getElementById('theme-toggle-btn');
   if (btn) {
     btn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
-    btn.setAttribute('title', theme === 'dark' ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي');
+    btn.setAttribute('title', theme === 'dark' ? 'Mode Clair' : 'Mode Sombre');
   }
 }
 
@@ -37,6 +56,8 @@ function renderSharedHeader() {
   const headerEl = document.getElementById('main-header');
   if (!headerEl) return;
 
+  const lang = getLang();
+  const t = getTranslation();
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
   headerEl.className = 'site-header';
@@ -44,11 +65,11 @@ function renderSharedHeader() {
     <!-- Ticker Bar -->
     <div class="ticker-bar">
       <div class="container ticker-content">
-        <span class="ticker-badge">مستجدات قانونية</span>
+        <span class="ticker-badge">${t.tickerBadge}</span>
         <div class="ticker-text">
-          <span>📢 إصدار الدليل التوجيهي الجديد للشرطة الإدارية الجماعية وفق آخر التعديلات التشريعية للميثاق الجماعي.</span>
+          <span>${t.tickerNotice}</span>
         </div>
-        <a href="Guide_police_administrative.pdf" target="_blank" class="ticker-badge" style="background:#ffffff; color:#0f172a;">تحميل الدليل PDF</a>
+        <a href="Guide_police_administrative.pdf" target="_blank" class="ticker-badge" style="background:#ffffff; color:#0f172a;">${t.downloadPdf}</a>
       </div>
     </div>
 
@@ -57,24 +78,28 @@ function renderSharedHeader() {
       <a href="index.html" class="logo-brand">
         <div class="logo-icon">⚖️</div>
         <div class="logo-text">
-          <h1>الشرطة الإدارية</h1>
-          <span>البوابة الرسمية الجماعية</span>
+          <h1>${t.siteTitle}</h1>
+          <span>${t.siteSubtitle}</span>
         </div>
       </a>
 
       <nav class="nav-menu">
-        <a href="index.html" class="nav-link ${currentPath === 'index.html' || currentPath === '' ? 'active' : ''}">الرئيسية</a>
-        <a href="legal.html" class="nav-link ${currentPath === 'legal.html' ? 'active' : ''}">الإطار القانوني</a>
-        <a href="domains.html" class="nav-link ${currentPath === 'domains.html' ? 'active' : ''}">مجالات التدخل</a>
-        <a href="procedures.html" class="nav-link ${currentPath === 'procedures.html' ? 'active' : ''}">المساطر والترخيصات</a>
-        <a href="complaints.html" class="nav-link ${currentPath === 'complaints.html' ? 'active' : ''}">بوابة الشكايات</a>
-        <a href="resources.html" class="nav-link ${currentPath === 'resources.html' ? 'active' : ''}">المكتبة والمعجم</a>
+        <a href="index.html" class="nav-link ${currentPath === 'index.html' || currentPath === '' ? 'active' : ''}">${t.navHome}</a>
+        <a href="legal.html" class="nav-link ${currentPath === 'legal.html' ? 'active' : ''}">${t.navLegal}</a>
+        <a href="domains.html" class="nav-link ${currentPath === 'domains.html' ? 'active' : ''}">${t.navDomains}</a>
+        <a href="procedures.html" class="nav-link ${currentPath === 'procedures.html' ? 'active' : ''}">${t.navProcedures}</a>
+        <a href="complaints.html" class="nav-link ${currentPath === 'complaints.html' ? 'active' : ''}">${t.navComplaints}</a>
+        <a href="resources.html" class="nav-link ${currentPath === 'resources.html' ? 'active' : ''}">${t.navResources}</a>
+        <a href="admin.html" class="nav-link ${currentPath === 'admin.html' ? 'active' : ''}" style="color:var(--primary-light); font-weight:800;">🔐 ${t.navAdmin}</a>
       </nav>
 
       <div class="nav-actions">
-        <button id="search-trigger-btn" class="btn-icon" title="البحث الشامل" onclick="openSearchModal()">🔍</button>
+        <button id="lang-toggle-btn" class="btn-outline" style="padding:0.35rem 0.75rem; font-size:0.85rem;" onclick="toggleLanguage()">
+          🌐 ${lang === 'ar' ? 'Français' : 'العربية'}
+        </button>
+        <button id="search-trigger-btn" class="btn-icon" title="Search" onclick="openSearchModal()">🔍</button>
         <button id="theme-toggle-btn" class="btn-icon" onclick="toggleTheme()">🌙</button>
-        <a href="complaints.html" class="btn-primary" style="display: none; @media(min-width:768px){display:inline-flex;}">إيداع شكاية</a>
+        <a href="complaints.html" class="btn-primary" style="display: none; @media(min-width:768px){display:inline-flex;}">${t.fileComplaintBtn}</a>
       </div>
     </div>
   `;
@@ -87,52 +112,58 @@ function renderSharedFooter() {
   const footerEl = document.getElementById('main-footer');
   if (!footerEl) return;
 
+  const lang = getLang();
+  const t = getTranslation();
+
   footerEl.className = 'site-footer';
   footerEl.innerHTML = `
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h3>الشرطة الإدارية الجماعية</h3>
-          <p>البوابة الرقمية الموحدة لنشر ثقافة الشرطة الإدارية الجماعية، تيسير مساطر الترخيص، وتوفير قناة رقمية موثوقة لتقديم شكايات وبلاغات المواطنين بالحضر والريف.</p>
+          <h3>${t.siteTitle}</h3>
+          <p>${lang === 'ar' 
+            ? 'البوابة الرقمية الموحدة لنشر ثقافة الشرطة الإدارية الجماعية، تيسير مساطر الترخيص، وتوفير قناة رقمية موثوقة لتقديم شكايات وبلاغات المواطنين بالحضر والريف.' 
+            : 'Le portail numérique officiel dédié à la sensibilisation sur la police administrative communale, la simplification des procédures d\'autorisation et le traitement des plaintes.'}</p>
           <a href="Guide_police_administrative.pdf" target="_blank" class="btn-accent" style="font-size:0.875rem; padding:0.5rem 1.25rem;">
-            📄 تحميل الدليل الرسمـي (PDF)
+            📄 ${t.downloadPdf}
           </a>
         </div>
 
         <div class="footer-col">
-          <h4>روابط السريعة</h4>
+          <h4>${lang === 'ar' ? 'روابط سريعة' : 'Liens Rapides'}</h4>
           <ul class="footer-links">
-            <li><a href="index.html">الصفحة الرئيسية</a></li>
-            <li><a href="legal.html">الإطار القانوني والأجهزة</a></li>
-            <li><a href="domains.html">مجالات التدخل الرئيسية</a></li>
-            <li><a href="procedures.html">دليل المساطر والترخيصات</a></li>
+            <li><a href="index.html">${t.navHome}</a></li>
+            <li><a href="legal.html">${t.navLegal}</a></li>
+            <li><a href="domains.html">${t.navDomains}</a></li>
+            <li><a href="procedures.html">${t.navProcedures}</a></li>
+            <li><a href="admin.html">🔐 ${t.navAdmin}</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>خدمات المواطن</h4>
+          <h4>${lang === 'ar' ? 'خدمات المواطن' : 'Services Citoyens'}</h4>
           <ul class="footer-links">
-            <li><a href="complaints.html">إيداع بلاغ أو شكاية</a></li>
-            <li><a href="complaints.html#track">تتبع حالة الشكاية</a></li>
-            <li><a href="resources.html">معجم المصطلحات القانونية</a></li>
-            <li><a href="Guide_police_administrative.pdf" target="_blank">تحميل الوثائق المرجعية</a></li>
+            <li><a href="complaints.html">${t.navComplaints}</a></li>
+            <li><a href="complaints.html#track">${lang === 'ar' ? 'تتبع حالة الشكاية' : 'Suivi de plainte'}</a></li>
+            <li><a href="resources.html">${t.navResources}</a></li>
+            <li><a href="Guide_police_administrative.pdf" target="_blank">${t.downloadPdf}</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>الميادين الأساسية</h4>
+          <h4>${lang === 'ar' ? 'الميادين الأساسية' : 'Domaines Clés'}</h4>
           <ul class="footer-links">
-            <li><a href="domains.html#health">الصحة والنظافة والبيئة</a></li>
-            <li><a href="domains.html#traffic">شرطة السير والجولان</a></li>
-            <li><a href="domains.html#rural">الشرطة القروية وحماية البيئة</a></li>
-            <li><a href="legal.html#authorities">اختصاصات رئيس الجماعة</a></li>
+            <li><a href="domains.html#health">${lang === 'ar' ? 'الصحة والنظافة والبيئة' : 'Santé & Environnement'}</a></li>
+            <li><a href="domains.html#traffic">${lang === 'ar' ? 'شرطة السير والجولان' : 'Circulation & Voirie'}</a></li>
+            <li><a href="domains.html#rural">${lang === 'ar' ? 'الشرطة القروية' : 'Police Rurale'}</a></li>
+            <li><a href="legal.html#authorities">${lang === 'ar' ? 'اختصاصات رئيس الجماعة' : 'Maire & Prérogatives'}</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 البوابة الرقمية للشرطة الإدارية الجماعية - مستوحى من الدليل الرسمي للمديرية العامة للجماعات الترابية.</p>
-        <p>تصميم مريح يدعم الوصول الشامل والتصفح الآمن.</p>
+        <p>© 2026 ${t.siteTitle} - ${lang === 'ar' ? 'مستوحى من الدليل الرسمي للمديرية العامة للجماعات الترابية.' : 'Inspiré du guide officiel de la DGCT.'}</p>
+        <p>${lang === 'ar' ? 'تصميم مريح يدعم الوصول الشامل والتصفح الآمن.' : 'Conception accessible et sécurisée.'}</p>
       </div>
     </div>
   `;
@@ -140,16 +171,18 @@ function renderSharedFooter() {
 
 /* Global Search Modal */
 function initGlobalSearchModal() {
+  const lang = getLang();
+  const t = getTranslation();
   const modalHtml = `
     <div id="global-search-modal" class="search-modal" onclick="closeSearchModalOnBackdrop(event)">
       <div class="search-box-card">
         <div class="search-input-wrapper">
           <span>🔍</span>
-          <input type="text" id="modal-search-input" placeholder="ابحث في القوانين، المجالات، المساطر، أو المصطلحات..." oninput="handleModalSearch(this.value)">
+          <input type="text" id="modal-search-input" placeholder="${t.searchPlaceholder}" oninput="handleModalSearch(this.value)">
           <button class="btn-icon" onclick="closeSearchModal()">❌</button>
         </div>
         <div id="modal-search-results" class="search-results-list">
-          <p style="text-align:center; color:var(--text-light); padding:2rem;">أدخل كلمة البحث للبدء...</p>
+          <p style="text-align:center; color:var(--text-light); padding:2rem;">${t.modalStartText}</p>
         </div>
       </div>
     </div>
@@ -177,34 +210,26 @@ function closeSearchModalOnBackdrop(e) {
 function handleModalSearch(query) {
   const resultsContainer = document.getElementById('modal-search-results');
   const q = query.trim().toLowerCase();
+  const lang = getLang();
+  const t = getTranslation();
 
   if (!q) {
-    resultsContainer.innerHTML = `<p style="text-align:center; color:var(--text-light); padding:2rem;">أدخل كلمة البحث للبدء...</p>`;
+    resultsContainer.innerHTML = `<p style="text-align:center; color:var(--text-light); padding:2rem;">${t.modalStartText}</p>`;
     return;
   }
 
   let matches = [];
 
-  // Search domains
-  if (policePortalData && policePortalData.domains) {
-    policePortalData.domains.forEach(d => {
+  if (t.domains) {
+    t.domains.forEach(d => {
       if (d.title.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q)) {
-        matches.push({ type: 'مجال تدخل', title: d.title, desc: d.desc, link: 'domains.html' });
-      }
-    });
-  }
-
-  // Search glossary
-  if (policePortalData && policePortalData.glossary) {
-    policePortalData.glossary.forEach(g => {
-      if (g.term.toLowerCase().includes(q) || g.def.toLowerCase().includes(q)) {
-        matches.push({ type: 'مصطلح قانوني', title: g.term, desc: g.def, link: 'resources.html' });
+        matches.push({ type: lang === 'ar' ? 'مجال تدخل' : 'Domaine', title: d.title, desc: d.desc, link: 'domains.html' });
       }
     });
   }
 
   if (matches.length === 0) {
-    resultsContainer.innerHTML = `<p style="text-align:center; color:var(--text-light); padding:2rem;">لم يتم العثور على نتائج تطابق "${query}"</p>`;
+    resultsContainer.innerHTML = `<p style="text-align:center; color:var(--text-light); padding:2rem;">${t.modalNoResults}</p>`;
     return;
   }
 
@@ -215,4 +240,36 @@ function handleModalSearch(query) {
       <p style="font-size:0.875rem; color:var(--text-muted);">${m.desc}</p>
     </div>
   `).join('');
+}
+
+/* Global PDF Preview Viewer Modal */
+function openPdfPreviewModal() {
+  const lang = getLang();
+  const modalHtml = `
+    <div id="pdf-preview-modal" class="search-modal active" onclick="if(event.target.id==='pdf-preview-modal') closePdfPreviewModal()">
+      <div class="search-box-card" style="max-width:900px; width:92%; height:82vh; padding:1.5rem; display:flex; flex-direction:column;">
+        <div style="display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border-color); padding-bottom:1rem; margin-bottom:1rem;">
+          <h3 style="font-size:1.3rem;">📘 ${lang === 'ar' ? 'معاينة وتصفح الدليل الرسمي للشرطة الإدارية الجماعية' : 'Aperçu du Guide Officiel de la Police Administrative'}</h3>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <a href="Guide_police_administrative.pdf" download class="btn-accent" style="font-size:0.85rem; padding:0.4rem 1rem;">📥 ${lang === 'ar' ? 'تنزيل الملف' : 'Télécharger'}</a>
+            <button class="btn-icon" onclick="closePdfPreviewModal()">❌</button>
+          </div>
+        </div>
+
+        <div style="flex:1; width:100%; background:var(--bg-main); border-radius:var(--radius-md); overflow:hidden;">
+          <iframe src="Guide_police_administrative.pdf" style="width:100%; height:100%; border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const existing = document.getElementById('pdf-preview-modal');
+  if (existing) existing.remove();
+
+  document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function closePdfPreviewModal() {
+  const modal = document.getElementById('pdf-preview-modal');
+  if (modal) modal.remove();
 }

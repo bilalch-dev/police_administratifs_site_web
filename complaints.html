@@ -1,20 +1,200 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بوابة الشكايات والبلاغات | الشرطة الإدارية الجماعية</title>
-    <meta name="description" content="البوابة الرقمية لإيداع ومتابعة شكايات وبلاغات المواطنين المتعلقة بالشرطة الإدارية الجماعية.">
+    <meta name="description" content="إيداع وتتبع الشكايات والبلاغات المتعلقة بالنظافة العامة، عرقلة السير، الكلاب الضالة، والإزعاج العمومي برقم تتبع فريد.">
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.925rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.4rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+        }
+        .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+            background: var(--bg-surface);
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Header Navigation -->
     <header id="main-header"></header>
-    <main id="main-content"></main>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header Banner -->
+        <section class="hero-section" style="padding: 3rem 0; background: linear-gradient(135deg, rgba(13,148,136,0.08) 0%, rgba(245,158,11,0.06) 100%);">
+            <div class="container">
+                <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:var(--text-light); margin-bottom:1rem;">
+                    <a href="index.html">الرئيسية</a> <span>‹</span> <span style="color:var(--primary-light); font-weight:700;">بوابة الشكايات والبلاغات</span>
+                </div>
+                
+                <span class="section-tag">خدمة المواطن والتبليغ المباشر</span>
+                <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:1rem;">
+                    البوابة الرقمية لإيداع وتتبع الشكايات والبلاغات
+                </h1>
+                <p class="hero-description" style="max-width:850px; margin-bottom:0;">
+                    قناة مواطنة مباشرة تتيح لك التبليغ عن أي مخالفة تمس بالصحة، النظافة، السير، أو السكينة العامة، ومتابعة مآل المعالجة برقم تتبع فريد يسلم لك فورياً.
+                </p>
+            </div>
+        </section>
+
+        <!-- Main Form & Tracking Grid -->
+        <section class="container" style="padding: 4rem 0;">
+            <div style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap:3rem;">
+                
+                <!-- Left Column: Incident Submission Form -->
+                <div class="glass-panel" style="padding:2.5rem;">
+                    <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem; border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+                        <span style="font-size:2rem;">📝</span>
+                        <div>
+                            <h3 style="font-size:1.4rem;">نموذج إيداع بلاغ أو شكاية جديدة</h3>
+                            <p style="font-size:0.875rem; color:var(--text-light);">المرجو ملء المعطيات بدقة لتسهيل المعاينة التدخل</p>
+                        </div>
+                    </div>
+
+                    <form id="complaint-form">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="form-group">
+                                <label for="comp-name">الاسم الكامل *</label>
+                                <input type="text" id="comp-name" class="form-control" placeholder="أدخل اسمك الكامل" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="comp-phone">رقم الهاتف *</label>
+                                <input type="tel" id="comp-phone" class="form-control" placeholder="06XXXXXXXX" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comp-category">تصنيف البلاغ / الشكاية *</label>
+                            <select id="comp-category" class="form-control" required>
+                                <option value="" disabled selected>اختر المجال المعني بالمخالفة...</option>
+                                <option value="النظافة والبيئة">🧹 النظافة والبيئة (نفايات، مستنقعات، روائح)</option>
+                                <option value="السير والجولان">🚦 السير والجولان (عرقلة، احتلال الملك العمومي)</option>
+                                <option value="الكلاب الضالة والحيوانات">🐕 الكلاب الضالة والحيوانات السائبة</option>
+                                <option value="السكينة العامة والإزعاج">🔊 الضوضاء والإزعاج والمحلات المفتوحة</option>
+                                <option value="المؤسسات المرتبة والصحية">🏭 المؤسسات المرتبة والمحلات التجارية</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comp-title">موضوع البلاغ مختصر *</label>
+                            <input type="text" id="comp-title" class="form-control" placeholder="مثال: تراكم القمامات قرب المدرسة أو إزعاج محل تجاري..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comp-location">موقع المخالفة / الحي والشارع *</label>
+                            <input type="text" id="comp-location" class="form-control" placeholder="أدخل العنوان التفصيلي أو اسم الحي والشارع" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comp-details">تفاصيل البلاغ والملاحظات *</label>
+                            <textarea id="comp-details" class="form-control" rows="4" placeholder="اشرح حالة المخالفة والأضرار الناجمة عنها بالتفصيل..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="width:100%; padding:0.9rem; font-size:1rem;">
+                            🚀 إيداع الشكاية والحصول على رمز التتبع
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Tracking Widget & History -->
+                <div>
+                    
+                    <!-- Search Tracking Widget -->
+                    <div id="track-section" class="glass-panel" style="padding:2rem; margin-bottom:2rem;">
+                        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+                            <span style="font-size:1.5rem;">🔍</span>
+                            <h3 style="font-size:1.3rem;">تتبع حالة شكاية مسجلة</h3>
+                        </div>
+                        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1.25rem;">
+                            أدخل رمز التتبع الخاص بك (مثال: POL-2026-78A1B) للاطلاع على تقدم المعالجة:
+                        </p>
+
+                        <div style="display:flex; gap:0.5rem; margin-bottom:1.5rem;">
+                            <input type="text" id="track-id-input" class="form-control" placeholder="POL-2026-XXXXX" style="text-transform:uppercase; font-family:monospace; font-weight:700;">
+                            <button class="btn-accent" onclick="searchComplaintStatus()" style="white-space:nowrap;">بحث 🔍</button>
+                        </div>
+
+                        <div id="track-result-container">
+                            <!-- Track status result rendered dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Complaints History -->
+                    <div class="glass-panel" style="padding:2rem;">
+                        <h4 style="font-size:1.1rem; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                            <span>📋</span> البلاغات والشكايات المسجلة محلياً
+                        </h4>
+                        <div id="complaints-history-container">
+                            <!-- History items rendered dynamically -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background:var(--bg-surface); padding: 4rem 0; border-top:1px solid var(--border-color); margin-bottom:3rem;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">الأسئلة الشائعة</span>
+                    <h2 class="section-title">إرشادات تتبع الشكايات والبلاغات</h2>
+                    <p class="section-desc">إجابات على أهم الاستفسارات الخاصة بكيفية معالجة الشكايات وآجال التدخل الإداري.</p>
+                </div>
+
+                <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem;">
+                    <div class="glass-panel" style="padding:1.5rem;">
+                        <h4 style="font-size:1.1rem; color:var(--primary-light); margin-bottom:0.5rem;">كم تستغرق المعالجة؟</h4>
+                        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">تتم المعاينة الميدانية للبلاغات المستعجلة (كالنفايات أو الكلاب الضالة) خلال 24 إلى 48 ساعة من تاريخ التسجيل.</p>
+                    </div>
+
+                    <div class="glass-panel" style="padding:1.5rem;">
+                        <h4 style="font-size:1.1rem; color:var(--primary-light); margin-bottom:0.5rem;">هل معطياتي محمية؟</h4>
+                        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">نعم، تبقى هوية المصرح محمية وتستعمل فقط للتواصل وإفادته بملف المتابعة دون الكشف عنها للمخالف.</p>
+                    </div>
+
+                    <div class="glass-panel" style="padding:1.5rem;">
+                        <h4 style="font-size:1.1rem; color:var(--primary-light); margin-bottom:0.5rem;">ماذا لو رفض المخالف؟</h4>
+                        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">يلجأ رئيس الجماعة إلى التنفيذ التلقائي (Exécution d'office) واستخدام القوة العمومية لتطبيقه على نفقة المخالف.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
     <footer id="main-footer"></footer>
+
+    <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script src="js/pages/complaints.js"></script>
+
 </body>
 </html>

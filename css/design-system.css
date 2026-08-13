@@ -2,7 +2,7 @@
    DESIGN SYSTEM & THEME TOKENS - Administrative Police Web Portal
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Color Palette - Premium Emerald & Deep Navy Authority Theme */
@@ -56,8 +56,8 @@
   --shadow-accent-glow: 0 0 25px var(--accent-glow);
 
   /* Typography */
-  --font-family: 'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Tajawal', 'Cairo', sans-serif;
+  --font-family: 'Cairo', 'Tajawal', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Tajawal', 'Cairo', 'Inter', sans-serif;
 
   /* Radii & Transitions */
   --radius-sm: 8px;
@@ -100,10 +100,17 @@
 }
 
 html {
-  direction: rtl;
-  lang: ar;
   scroll-behavior: smooth;
   font-size: 16px;
+}
+
+html[lang="ar"] {
+  direction: rtl;
+}
+
+html[lang="fr"] {
+  direction: ltr;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
@@ -210,6 +217,38 @@ img {
   box-shadow: var(--shadow-md);
 }
 
+/* LTR OVERRIDES FOR FRENCH MODE */
+[dir="ltr"] {
+  text-align: left;
+}
+
+[dir="ltr"] .footer-col h4::after {
+  right: auto;
+  left: 0;
+}
+
+[dir="ltr"] .footer-links a:hover {
+  transform: translateX(4px);
+}
+
+[dir="ltr"] .hero-quick-search input {
+  padding: 1rem 3rem 1rem 1.25rem;
+}
+
+[dir="ltr"] .hero-quick-search .search-icon {
+  left: auto;
+  right: 1.25rem;
+}
+
+[dir="ltr"] [style*="border-right"] {
+  border-right: none !important;
+  border-left: 4px solid var(--primary-light) !important;
+}
+
+[dir="ltr"] [style*="text-align:right"] {
+  text-align: left !important;
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -222,22 +261,13 @@ img {
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 15px var(--primary-glow); }
-  50% { box-shadow: 0 0 35px var(--primary-glow); }
-}
-
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
 }
 
-.animate-fade-up {
+.fade-in {
   animation: fadeInUp 0.6s var(--transition-smooth) forwards;
-}
-
-.animate-pulse {
-  animation: pulseGlow 3s infinite ease-in-out;
 }
 
 .animate-float {

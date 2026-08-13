@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <!-- Header Navigation (Rendered via JS) -->
+    <!-- Header Navigation -->
     <header id="main-header"></header>
 
     <!-- Main Content -->
@@ -39,9 +39,9 @@
                         <a href="complaints.html" class="btn-accent">
                             <span>📝</span> إيداع بلاغ أو شكاية
                         </a>
-                        <a href="Guide_police_administrative.pdf" target="_blank" class="btn-outline">
-                            <span>📄</span> تحميل الدليل PDF
-                        </a>
+                        <button class="btn-outline" onclick="openPdfPreviewModal()">
+                            <span>👁️</span> معاينة الدليل PDF
+                        </button>
                     </div>
                 </div>
 
@@ -140,19 +140,19 @@
             </div>
         </section>
 
-        <!-- Official PDF Download Banner -->
+        <!-- Official PDF Download & Viewer Banner (EXCLUSIVE TO HOME PAGE) -->
         <section class="pdf-banner-section container">
             <div class="pdf-banner-card">
                 <div class="pdf-banner-content">
-                    <h3>حمّل النسخة الكاملة من الدليل الرسمي للشرطة الإدارية الجماعية</h3>
-                    <p>وثيقة مرجعية شاملة أعدتها المديرية العامة للجماعات الترابية لتمكين المنتخبين والممارسين من الإلمام بكافة ضوابط وميادين الشرطة الإدارية الجماعية.</p>
+                    <h3>حمّل وتصفّح النسخة الكاملة من الدليل الرسمي للشرطة الإدارية</h3>
+                    <p>وثيقة مرجعية شاملة أعدتها المديرية العامة للجماعات الترابية لتمكين المنتخبين والممارسين من الإلمام بكافة ضوابط وميادين الشرطة الإدارية الجماعية (28 صفحة).</p>
                     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-                        <a href="Guide_police_administrative.pdf" target="_blank" class="btn-accent">
+                        <a href="Guide_police_administrative.pdf" download class="btn-accent">
                             📥 تنزيل الدليل الرسمي (PDF)
                         </a>
-                        <a href="resources.html" class="btn-outline" style="border-color:#ffffff; color:#ffffff;">
-                            📚 تصفح المعجم القانوني
-                        </a>
+                        <button class="btn-outline" style="border-color:#ffffff; color:#ffffff;" onclick="openPdfPreviewModal()">
+                            👁️ معاينة وتصفح الدليل مباشرة
+                        </button>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@
                     <div style="background:rgba(255,255,255,0.1); border:1px dashed rgba(255,255,255,0.25); border-radius:var(--radius-lg); padding:1.5rem; text-align:center;">
                         <span style="font-size:3.5rem;">📘</span>
                         <h4 style="color:#ffffff; margin-top:0.5rem;">28 صفحة</h4>
-                        <p style="font-size:0.85rem; color:#cbd5e1;">شامل لكل المساطر والنصوص</p>
+                        <p style="font-size:0.85rem; color:#cbd5e1;">معاينة رقمية تفاعلية</p>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,7 @@
 
     </main>
 
-    <!-- Footer Component (Rendered via JS) -->
+    <!-- Footer Component -->
     <footer id="main-footer"></footer>
 
     <!-- Scripts -->

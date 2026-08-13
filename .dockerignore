@@ -1,0 +1,5 @@
+.git
+.gitignore
+README.md
+extracted_guide_summary.txt
+*.log

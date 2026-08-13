@@ -1,20 +1,133 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المكتبة الرقمية ومعجم المصطلحات | الشرطة الإدارية</title>
-    <meta name="description" content="معجم المصطلحات القانونية، تحميل الدليل الرسمي للشرطة الإدارية، والنصوص التنظيمية.">
+    <title>المكتبة الرقمية ومعجم المصطلحات | الشرطة الإدارية الجماعية</title>
+    <meta name="description" content="معجم المصطلحات القانونية للشرطة الإدارية الجماعية، وتصفح القوانين والمراسم المنظمة.">
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .glossary-letter-btn {
+            padding: 0.4rem 0.85rem;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .glossary-letter-btn:hover, .glossary-letter-btn.active {
+            background: var(--primary-light);
+            color: #ffffff;
+            border-color: var(--primary-light);
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Header Navigation -->
     <header id="main-header"></header>
-    <main id="main-content"></main>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header Banner -->
+        <section class="hero-section" style="padding: 3rem 0; background: linear-gradient(135deg, rgba(13,148,136,0.08) 0%, rgba(15,23,42,0.05) 100%);">
+            <div class="container">
+                <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.875rem; color:var(--text-light); margin-bottom:1rem;">
+                    <a href="index.html">الرئيسية</a> <span>‹</span> <span style="color:var(--primary-light); font-weight:700;">المكتبة الرقمية والمعجم</span>
+                </div>
+                
+                <span class="section-tag">القاموس والمستندات المرجعية</span>
+                <h1 class="hero-title" style="font-size:2.5rem; margin-bottom:1rem;">
+                    معجم المصطلحات والمكتبة التشريعية
+                </h1>
+                <p class="hero-description" style="max-width:850px; margin-bottom:0;">
+                    قاموس قانوني تفاعلي يضم الشرح والتعريف المفصل لأهم مصطلحات الشرطة الإدارية الجماعية المقتبسة من الدليل الرسمي والنصوص التشريعية المغربية.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 1: Searchable Legal Glossary -->
+        <section class="container" style="padding: 4rem 0;">
+            <div class="section-header">
+                <span class="section-tag">القاموس القانوني التفاعلي</span>
+                <h2 class="section-title">معجم مصطلحات الشرطة الإدارية</h2>
+                <p class="section-desc">ابحث في المصطلحات والتعاريف الفقهية أو صفّها حسب الحرف الأبجدي.</p>
+            </div>
+
+            <!-- Live Search Bar -->
+            <div style="max-width:650px; margin:0 auto 2.5rem auto;">
+                <div class="hero-quick-search" style="margin-bottom:1.5rem;">
+                    <input type="text" id="glossary-search-input" placeholder="ابحث عن مصطلح قانوني (مثال: السكينة العامة، التنفيذ التلقائي...)" oninput="searchGlossaryLive(this.value)">
+                    <span class="search-icon">🔍</span>
+                </div>
+
+                <!-- Alphabet Filter -->
+                <div id="alphabet-filter-container" style="display:flex; justify-content:center; gap:0.4rem; flex-wrap:wrap;">
+                    <!-- Letter buttons rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- Glossary Cards Grid -->
+            <div id="glossary-cards-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
+                <!-- Cards rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- Section 2: Statutory Reference Texts -->
+        <section style="background:var(--bg-surface); padding: 4.5rem 0; border-top:1px solid var(--border-color); margin-bottom:3rem;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">الوثائق والنصوص المرجعية</span>
+                    <h2 class="section-title">المكتبة التشريعية والنصوص المؤطرة</h2>
+                    <p class="section-desc">النصوص والمراسيم الصادرة في الجريدة الرسمية والمتعلقة بممارسة الشرطة الإدارية الجماعية.</p>
+                </div>
+
+                <!-- Legal Texts Grid -->
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+                    
+                    <div class="glass-panel" style="padding:1.5rem; border-top:4px solid var(--primary-light);">
+                        <span style="font-size:0.8rem; color:var(--primary-light); font-weight:700;">الميثاق الجماعي</span>
+                        <h4 style="font-size:1.15rem; margin:0.35rem 0;">القانون رقم 78.00 المعدل بالقانون 17.08</h4>
+                        <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">النص الأساسي المحدد لاختصاصات رئيس الجماعة في المواد 50، 52، و53 والمجلس الجماعي في المواد 37 إلى 40.</p>
+                    </div>
+
+                    <div class="glass-panel" style="padding:1.5rem; border-top:4px solid var(--accent);">
+                        <span style="font-size:0.8rem; color:var(--accent-dark); font-weight:700;">التنفيذ التلقائي</span>
+                        <h4 style="font-size:1.15rem; margin:0.35rem 0;">المرسوم رقم 2.78.157 (26 ماي 1980)</h4>
+                        <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">تحديد الشروط والإجراءات التي تنفذ بها تلقائياً التدابير الرامية إلى ضمان سلامة المرور والصحة العمومية والسكينة.</p>
+                    </div>
+
+                    <div class="glass-panel" style="padding:1.5rem; border-top:4px solid var(--warning);">
+                        <span style="font-size:0.8rem; color:var(--warning); font-weight:700;">المؤسسات المرتبة</span>
+                        <h4 style="font-size:1.15rem; margin:0.35rem 0;">ظهير 25 شوال 1332 (17 أغسطس 1914)</h4>
+                        <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">الظهير الشريف المنظم للمؤسسات المضرة أو المزعجة أو الخطيرة وتحديد درجات تصنيفها وضوابط فتحها وإغلاقها.</p>
+                    </div>
+
+                    <div class="glass-panel" style="padding:1.5rem; border-top:4px solid var(--info);">
+                        <span style="font-size:0.8rem; color:var(--info); font-weight:700;">قوانين التعمير</span>
+                        <h4 style="font-size:1.15rem; margin:0.35rem 0;">القانون رقم 12.90 المتعلق بالتعمير</h4>
+                        <p style="font-size:0.875rem; color:var(--text-muted); line-height:1.7;">ضوابط رخص البناء، السكن، شهادات المطابقة، ورخص احتلال الملك العمومي لغرض البناء وزجر المخالفات.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
     <footer id="main-footer"></footer>
+
+    <!-- Scripts -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script src="js/pages/resources.js"></script>
+
 </body>
 </html>
