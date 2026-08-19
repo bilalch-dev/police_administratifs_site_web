@@ -1,14 +1,16 @@
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
-import string
 import random
+import string
+from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+
 
 def generate_tracking_id():
     """Generates a unique tracking code like POL-2026-X8B9K"""
     random_str = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
     return f"POL-2026-{random_str}"
+
 
 class Complaint(db.Model):
     __tablename__ = 'complaints'
@@ -20,12 +22,12 @@ class Complaint(db.Model):
     title = db.Column(db.String(200), nullable=False)
     location = db.Column(db.String(200), nullable=False)
     details = db.Column(db.Text, nullable=False)
-    
+
     # Status workflow: RECEIVED (1), INSPECTION (2), ENFORCEMENT (3), RESOLVED (4)
     status = db.Column(db.String(50), default="تم الاستلام وتسجيل البلاغ")
     status_step = db.Column(db.Integer, default=1)
     notes = db.Column(db.Text, default="تم تسجيل الشكاية بنجاح وإحالتها على المصالح الجماعية المختصة.")
-    
+
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
 
     def to_dict(self):
@@ -42,6 +44,7 @@ class Complaint(db.Model):
             "notes": self.notes,
             "date": self.created_at.strftime('%Y-%m-%d %H:%M:%S')
         }
+
 
 class User(db.Model):
     __tablename__ = 'users'

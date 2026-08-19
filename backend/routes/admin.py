@@ -1,8 +1,9 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
-from models import db, Complaint
+from models import Complaint, db
 
 admin_bp = Blueprint('admin', __name__)
+
 
 @admin_bp.route('/api/admin/complaints', methods=['GET'])
 @jwt_required()
@@ -21,6 +22,7 @@ def get_all_complaints():
     complaints = query.order_by(Complaint.created_at.desc()).all()
     return jsonify({"complaints": [c.to_dict() for c in complaints]}), 200
 
+
 @admin_bp.route('/api/admin/complaints/<tracking_id>', methods=['PUT'])
 @jwt_required()
 def update_complaint_status(tracking_id):
@@ -32,7 +34,7 @@ def update_complaint_status(tracking_id):
     data = request.get_json()
     if 'statusStep' in data:
         complaint.status_step = int(data['statusStep'])
-        
+
         # Map step to default Arabic status description
         step_labels = {
             1: "تم الاستلام وتسجيل البلاغ",

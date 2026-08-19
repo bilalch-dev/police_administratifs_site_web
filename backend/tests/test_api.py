@@ -4,6 +4,7 @@ import re
 # 1. Health Check Endpoint Tests
 # ==============================================================================
 
+
 def test_health_check(client):
     """Test /api/health endpoint returns 200 OK and healthy status."""
     response = client.get('/api/health')
@@ -11,6 +12,7 @@ def test_health_check(client):
     data = response.get_json()
     assert data['status'] == 'healthy'
     assert 'service' in data
+
 
 # ==============================================================================
 # 2. Citizen Complaint Submission & Tracking Tests
@@ -37,6 +39,7 @@ def test_create_complaint_success(client):
     # Tracking ID format must match POL-2026-XXXXX
     assert re.match(r"^POL-2026-[A-Z0-9]{5}$", complaint["id"])
 
+
 def test_create_complaint_missing_fields_returns_400(client):
     """Test complaint submission fails with 400 when required fields are missing."""
     incomplete_payload = {
@@ -48,6 +51,7 @@ def test_create_complaint_missing_fields_returns_400(client):
     assert response.status_code == 400
     data = response.get_json()
     assert "error" in data
+
 
 def test_get_complaint_by_tracking_id_success(client):
     """Test citizen can look up their complaint using the tracking code."""
@@ -70,12 +74,14 @@ def test_get_complaint_by_tracking_id_success(client):
     assert data['complaint']['name'] == "فاطمة الزهراء"
     assert data['complaint']['statusStep'] == 1
 
+
 def test_get_complaint_not_found_returns_404(client):
     """Test looking up a non-existent tracking code returns 404."""
     response = client.get('/api/complaints/POL-2026-INVALID')
     assert response.status_code == 404
     data = response.get_json()
     assert "error" in data
+
 
 # ==============================================================================
 # 3. Authentication & JWT Security Tests
@@ -93,6 +99,7 @@ def test_admin_login_success(client):
     assert data["user"]["username"] == "admin"
     assert data["user"]["role"] == "ADMIN"
 
+
 def test_admin_login_invalid_password_returns_401(client):
     """Test login with wrong password returns 401 Unauthorized."""
     response = client.post('/api/auth/login', json={
@@ -103,10 +110,12 @@ def test_admin_login_invalid_password_returns_401(client):
     data = response.get_json()
     assert "error" in data
 
+
 def test_admin_login_missing_fields_returns_400(client):
     """Test login without username or password returns 400 Bad Request."""
     response = client.post('/api/auth/login', json={"username": "admin"})
     assert response.status_code == 400
+
 
 # ==============================================================================
 # 4. Admin Protected Dashboard & Status Update Tests
@@ -117,6 +126,7 @@ def test_get_all_complaints_without_jwt_returns_401(client):
     response = client.get('/api/admin/complaints')
     assert response.status_code == 401
 
+
 def test_get_all_complaints_with_jwt_success(client, auth_headers):
     """Test authenticated officer can retrieve the list of complaints."""
     response = client.get('/api/admin/complaints', headers=auth_headers)
@@ -124,6 +134,7 @@ def test_get_all_complaints_with_jwt_success(client, auth_headers):
     data = response.get_json()
     assert "complaints" in data
     assert isinstance(data["complaints"], list)
+
 
 def test_update_complaint_status_step_and_notes(client, auth_headers):
     """Test officer can advance complaint status step (1 to 4) and add notes."""
@@ -156,6 +167,7 @@ def test_update_complaint_status_step_and_notes(client, auth_headers):
     # Verify update persisted via citizen GET endpoint
     get_res = client.get(f'/api/complaints/{tracking_id}')
     assert get_res.get_json()["complaint"]["statusStep"] == 2
+
 
 def test_update_complaint_not_found_returns_404(client, auth_headers):
     """Test updating a non-existent complaint returns 404."""

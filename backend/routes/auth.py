@@ -1,12 +1,14 @@
-from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token
-from models import db, User
 import hashlib
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import create_access_token
+from models import User
 
 auth_bp = Blueprint('auth', __name__)
 
+
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
+
 
 @auth_bp.route('/api/auth/login', methods=['POST'])
 def login():

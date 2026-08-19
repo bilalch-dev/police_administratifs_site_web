@@ -1,9 +1,10 @@
+import hashlib
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from config import Config
-from models import db, User, Complaint, generate_tracking_id
-import hashlib
+from models import db, User, Complaint
+
 
 def create_app():
     app = Flask(__name__)
@@ -37,7 +38,7 @@ def create_app():
                 role="ADMIN"
             )
             db.session.add(default_admin)
-            
+
             # Seed demo complaint if empty
             if not Complaint.query.first():
                 demo_complaint = Complaint(
@@ -58,6 +59,7 @@ def create_app():
             print("Database initialized and default admin (admin/admin123) created.")
 
     return app
+
 
 app = create_app()
 

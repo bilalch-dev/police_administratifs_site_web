@@ -1,13 +1,14 @@
-import pytest
-import sys
-import os
 import hashlib
+import os
+import sys
+import pytest
 
 # Add parent directory (backend) to path for importing app modules
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from app import create_app
-from models import db, User
+from app import create_app  # noqa: E402
+from models import User, db  # noqa: E402
+
 
 class TestConfig:
     TESTING = True
@@ -15,6 +16,7 @@ class TestConfig:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'super_secret_test_key_32_bytes_long_2026'
     JWT_SECRET_KEY = 'super_secure_jwt_secret_key_32_bytes_long_2026'
+
 
 @pytest.fixture
 def app():
@@ -38,10 +40,12 @@ def app():
         db.session.remove()
         db.drop_all()
 
+
 @pytest.fixture
 def client(app):
     """A test client for the Flask app."""
     return app.test_client()
+
 
 @pytest.fixture
 def auth_headers(client):
