@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timezone
 import string
 import random
 
@@ -26,7 +26,7 @@ class Complaint(db.Model):
     status_step = db.Column(db.Integer, default=1)
     notes = db.Column(db.Text, default="تم تسجيل الشكاية بنجاح وإحالتها على المصالح الجماعية المختصة.")
     
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
 
     def to_dict(self):
         return {
