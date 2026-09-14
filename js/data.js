@@ -127,6 +127,7 @@ const policePortalTranslations = {
     pdfSubText: "معاينة رقمية تفاعلية",
 
     // Home Citizen Callout
+    citizenTag: "خدمة المواطن",
     citizenTitle: "هل لاحظت مخالفة في النظافة أو السير أو السكينة؟",
     citizenDesc: "يمكنك الآن إيداع بلاغ فوري أو شكاية مباشرة عبر البوابة الرقمية، والحصول على رمز تتبع لمتابعة المعالجة خطوة بخطوة.",
     citizenBtn: "🚀 إيداع شكاية أو بلاغ الآن",
@@ -150,6 +151,29 @@ const policePortalTranslations = {
     secTagGov: "ضوابط عدم التداخل",
     secTitleGov: "المبادئ القانونية الثلاثة لضوابط الممارسة",
     secDescGov: "مبادئ مؤطرة لخضوع الشرطة الإدارية المحلية للقانون ومنع التضارب مع القرارات الوطنية.",
+    principles: [
+      {
+        icon: "📜",
+        badge: "تدرج القواعد القانونية",
+        title: "1. مبدأ عدم التناقض",
+        desc: "احترام القرارات الجماعية للمقتضيات التشريعية والتنظيمية الصادرة على المستوى الوطني. لا يجوز لأي قرار تنظيمي أو فردي يصدره رئيس المجلس الجماعي أن يتعارض مع نص قانوني أو مرسوم صادر عن السلطة الحكومية.",
+        rule: "خضوع التدابير الجماعية للشرعية القانونية ورقابة القضاء الإداري."
+      },
+      {
+        icon: "🛡️",
+        badge: "حصر الاختصاصات السيادية",
+        title: "2. مبدأ عدم التطاول",
+        desc: "منع ممارسة الاختصاصات الحصرية المسندة قانوناً للسلطات الوطنية ورجال الإدارة الترابية (الباشا / القائد)، كالمحافظة على الأمن العام، تنظيم التجمعات والمسيرات، ومراقبة الباعة الجائلين وفق المادة 49.",
+        rule: "الفصل الدقيق بين صلاحيات الشرطة الإدارية الجماعية والشرطة الإدارية العامة للدولة."
+      },
+      {
+        icon: "⚡",
+        badge: "حماية التدبير الحر والاستقلالية",
+        title: "3. مبدأ عدم الحلول",
+        desc: "منع سلطات المراقبة والإدارة الترابية من الحلول محل رئيس الجماعة في ممارسة صلاحيات الشرطة الإدارية، إلا في حالات استثنائية محددة حصراً بنص قانوني صريح، وبعد توجيه إعذار قانوني وبقائه دون جدوى.",
+        rule: "ضمان الاستقلالية الإدارية للجماعات الترابية ومبدأ التدبير الحر الدستوري."
+      }
+    ],
 
     // Domains Page
     domainsBreadcrumb: "مجالات التدخل",
@@ -207,6 +231,7 @@ const policePortalTranslations = {
     recentComplaintsTitle: "📋 البلاغات والشكايات المسجلة محلياً",
     faqTag: "الأسئلة الشائعة",
     faqTitle: "إرشادات تتبع الشكايات والبلاغات",
+    faqDesc: "إجابات على أهم الاستفسارات الخاصة بكيفية معالجة الشكايات وآجال التدخل الإداري.",
 
     // Resources Page
     resBreadcrumb: "المكتبة الرقمية والمعجم",
@@ -219,7 +244,64 @@ const policePortalTranslations = {
     resSecTagDecrees: "الوثائق والنصوص المرجعية",
     resSecTitleDecrees: "المكتبة التشريعية والنصوص المؤطرة",
     resSecDescDecrees: "النصوص والمراسيم الصادرة في الجريدة الرسمية والمتعلقة بممارسة الشرطة الإدارية الجماعية.",
-    resSearchPh: "ابحث عن مصطلح قانوني (مثال: السكينة العامة، التنفيذ التلقائي...)"
+    resSearchPh: "ابحث عن مصطلح قانوني (مثال: السكينة العامة، التنفيذ التلقائي...)",
+
+    // Admin Page
+    adminTitle: "لوحة تتبع ومعالجة الشكايات | لوحة قيادة الشرطة الإدارية",
+    adminLoginTag: "فضاء الأطر والموظفين",
+    adminLoginTitle: "تسجيل الدخول للوحة التحكم",
+    adminLoginDesc: "أدخل حساب الموظف للوصول إلى نظام تدبير وتتبع الشكايات الجماعية.",
+    adminUserLabel: "اسم المستخدم *",
+    adminUserPlaceholder: "اسم المستخدم (مثال: admin)",
+    adminPassLabel: "كلمة المرور *",
+    adminLoginBtn: "🔑 تسجيل الدخول إلى النظام",
+    adminDemoHint: "💡 الحساب الافتراضي للتجربة: <strong>admin</strong> / كلمة السر: <strong>admin123</strong>",
+    adminDashTag: "لوحة القيادة والمعالجة التفاعلية",
+    adminDashTitle: "تدبير ومعالجة الشكايات الجماعية",
+    adminOfficerPrefix: "👤 الموظف: ",
+    adminLogoutBtn: "🚪 تسجيل الخروج",
+    adminStatTotal: "إجمالي البلاغات",
+    adminStatStep1: "📥 1. تم الاستلام",
+    adminStatStep2: "🔍 2. قيد المعاينة (BMH)",
+    adminStatStep3: "⚙️ 3. قيد التنفيذ",
+    adminStatStep4: "✅ 4. تم المعالجة واختتامها",
+    adminSearchLabel: "بحث بالرمز أو اسم المواطن:",
+    adminSearchPlaceholder: "مثال: POL-2026-78A1B...",
+    adminCategoryLabel: "تصفية حسب مجال المخالفة:",
+    adminCatAll: "جميع المجالات",
+    adminCatHealth: "النظافة والبيئة",
+    adminCatTraffic: "السير والجولان",
+    adminCatAnimals: "الكلاب الضالة والحيوانات",
+    adminCatTranquility: "السكينة العامة والإزعاج",
+    adminCatEst: "المؤسسات المرتبة والصحية",
+    adminStepLabel: "تصفية حسب مرحلة المعالجة:",
+    adminStepAll: "جميع المراحل (1 - 4)",
+    adminStep1Opt: "1. تم الاستلام",
+    adminStep2Opt: "2. قيد المعاينة (BMH)",
+    adminStep3Opt: "3. قيد الإجراء والتنفيذ",
+    adminStep4Opt: "4. تم المعالجة والتسوية",
+    adminTableTitle: "📋 قائمة الشكايات والمخالفات",
+    adminRefreshBtn: "🔄 تحديث المعطيات",
+    adminLoadingText: "جاري تحميل المعطيات من النظام...",
+    adminColCode: "رمز التتبع",
+    adminColCitizen: "المواطن والهاتف",
+    adminColCategory: "المجال",
+    adminColSubject: "موضوع البلاغ والموقع",
+    adminColStage: "المرحلة الحالية",
+    adminColActions: "الإجراءات",
+    adminInspectBtn: "⚙️ تحديث وملاحظات",
+    adminModalTitle: "معالجة الشكاية: ",
+    adminModalCitizen: "المواطن:",
+    adminModalLocation: "الموقع:",
+    adminModalDetails: "تفاصيل البلاغ:",
+    adminModalStageLabel: "تحديث مرحلة المعالجة الحالية:",
+    adminModalNotesLabel: "إضافة ملاحظة المصالح الجماعية للمواطن:",
+    adminModalCancel: "إلغاء",
+    adminModalSave: "💾 حفظ التحديثات",
+    adminModalStep1: "📥 1. تم الاستلام وتسجيل البلاغ",
+    adminModalStep2: "🔍 2. قيد المعاينة الميدانية (المكتب الصحي BMH)",
+    adminModalStep3: "⚙️ 3. قيد اتخاذ الإجراء الإداري والتنفيذ",
+    adminModalStep4: "✅ 4. تم المعالجة واختتام البلاغ بنجاح"
   },
 
   fr: {
@@ -232,7 +314,7 @@ const policePortalTranslations = {
     navProcedures: "Procédures & Autorisations",
     navComplaints: "Portail des Plaintes",
     navResources: "Ressources & Lexique",
-    navAdmin: "Espace Agent",
+    navAdmin: "Tableau de bord",
     fileComplaintBtn: "Déposer une plainte",
     tickerNotice: "📢 Publication du nouveau guide d'orientation de la Police Administrative Communale selon la Charte Communale.",
     tickerBadge: "Actualités",
@@ -346,6 +428,7 @@ const policePortalTranslations = {
     pdfSubText: "Aperçu numérique interactif",
 
     // Home Citizen Callout
+    citizenTag: "Service Citoyen",
     citizenTitle: "Avez-vous remarqué une infraction d'hygiène, de voirie ou de tranquillité ?",
     citizenDesc: "Vous pouvez désormais déposer un signalement instantané sur le portail et recevoir un code de suivi unique.",
     citizenBtn: "🚀 Déposer un signalement maintenant",
@@ -369,6 +452,29 @@ const policePortalTranslations = {
     secTagGov: "Principes d'Encadrement",
     secTitleGov: "Les 3 Principes Fondamentaux de Gouvernance",
     secDescGov: "Règles juridiques encadrant la soumission des arrêtés communaux à la législation nationale.",
+    principles: [
+      {
+        icon: "📜",
+        badge: "Hiérarchie des Normes",
+        title: "1. Principe de Non-Contradiction",
+        desc: "Respect obligatoire des lois et décrets nationaux par les arrêtés communaux. Aucun arrêté réglementaire ou individuel pris par le Maire ne peut déroger, contredire ou restreindre des dispositions législatives d'un rang supérieur.",
+        rule: "Soumission stricte des actes de police communale au principe de légalité et au contrôle du juge administratif."
+      },
+      {
+        icon: "🛡️",
+        badge: "Respect des Compétences",
+        title: "2. Principe de Non-Empiètement",
+        desc: "Interdiction formelle d'exercer les compétences réservées exclusivement aux autorités étatiques et territoriales (Pacha / Caïd), notamment le maintien de l'ordre, la sécurité publique et les manifestations (article 49).",
+        rule: "Démarcation stricte et équilibrée entre police communale et compétences régaliennes de l'État."
+      },
+      {
+        icon: "⚡",
+        badge: "Garantie de Libre Administration",
+        title: "3. Principe de Non-Substitution",
+        desc: "Interdiction pour l'autorité de tutelle ou l'administration territoriale de se substituer au Maire dans l'exercice de ses compétences de police, sauf cas d'urgence légalement prévus et après mise en demeure restée infructueuse.",
+        rule: "Protection constitutionnelle de l'autonomie et de la libre gestion des collectivités territoriales."
+      }
+    ],
 
     // Domains Page
     domainsBreadcrumb: "Domaines d'Intervention",
@@ -426,6 +532,7 @@ const policePortalTranslations = {
     recentComplaintsTitle: "📋 Signalements enregistrés localement",
     faqTag: "Foire Aux Questions",
     faqTitle: "Guide de Traitement des Plaintes",
+    faqDesc: "Réponses aux questions fréquentes sur le traitement des plaintes et les délais d'intervention.",
 
     // Resources Page
     resBreadcrumb: "Ressources & Lexique",
@@ -438,7 +545,64 @@ const policePortalTranslations = {
     resSecTagDecrees: "Textes de Référence",
     resSecTitleDecrees: "Bibliothèque Législative",
     resSecDescDecrees: "Lois, décrets et dahirs régissant la police administrative communale au Maroc.",
-    resSearchPh: "Rechercher un terme (ex: Ordre Public, Exécution d'office...)"
+    resSearchPh: "Rechercher un terme (ex: Ordre Public, Exécution d'office...)",
+
+    // Admin Page
+    adminTitle: "Suivi & Traitement des Plaintes | Tableau de Bord Police Administrative",
+    adminLoginTag: "Espace Cadres & Agents",
+    adminLoginTitle: "Connexion au Tableau de Bord",
+    adminLoginDesc: "Accédez à votre compte pour gérer et instruire les signalements des citoyens.",
+    adminUserLabel: "Nom d'utilisateur *",
+    adminUserPlaceholder: "Nom d'utilisateur (ex: admin)",
+    adminPassLabel: "Mot de passe *",
+    adminLoginBtn: "🔑 Se connecter au système",
+    adminDemoHint: "💡 Compte démo : <strong>admin</strong> / Mot de passe : <strong>admin123</strong>",
+    adminDashTag: "Tableau de Bord & Traitement Interactif",
+    adminDashTitle: "Gestion & Traitement des Réclamations",
+    adminOfficerPrefix: "👤 Agent : ",
+    adminLogoutBtn: "🚪 Déconnexion",
+    adminStatTotal: "Total des signalements",
+    adminStatStep1: "📥 1. Reçu",
+    adminStatStep2: "🔍 2. Inspection (BMH)",
+    adminStatStep3: "⚙️ 3. En cours d'action",
+    adminStatStep4: "✅ 4. Traité & Clôturé",
+    adminSearchLabel: "Rechercher par code ou citoyen :",
+    adminSearchPlaceholder: "Ex: POL-2026-78A1B...",
+    adminCategoryLabel: "Filtrer par domaine d'infraction :",
+    adminCatAll: "Tous les domaines",
+    adminCatHealth: "Propreté & Environnement",
+    adminCatTraffic: "Circulation & Voirie",
+    adminCatAnimals: "Chiens errants & Animaux",
+    adminCatTranquility: "Tranquillité publique & Bruit",
+    adminCatEst: "Établissements classés & Commerces",
+    adminStepLabel: "Filtrer par étape de traitement :",
+    adminStepAll: "Toutes les étapes (1 - 4)",
+    adminStep1Opt: "1. Reçu",
+    adminStep2Opt: "2. Inspection (BMH)",
+    adminStep3Opt: "3. Procédure & Exécution",
+    adminStep4Opt: "4. Traité & Régularisé",
+    adminTableTitle: "📋 Liste des Signalements & Infractions",
+    adminRefreshBtn: "🔄 Actualiser les données",
+    adminLoadingText: "Chargement des données depuis le système...",
+    adminColCode: "Code",
+    adminColCitizen: "Citoyen & Téléphone",
+    adminColCategory: "Catégorie",
+    adminColSubject: "Objet du signalement & Lieu",
+    adminColStage: "Étape actuelle",
+    adminColActions: "Actions",
+    adminInspectBtn: "⚙️ Traiter & Mettre à jour",
+    adminModalTitle: "Traitement du signalement : ",
+    adminModalCitizen: "Citoyen :",
+    adminModalLocation: "Lieu :",
+    adminModalDetails: "Détails du signalement :",
+    adminModalStageLabel: "Mettre à jour l'étape de traitement :",
+    adminModalNotesLabel: "Ajouter une note officielle des services pour le citoyen :",
+    adminModalCancel: "Annuler",
+    adminModalSave: "💾 Enregistrer les modifications",
+    adminModalStep1: "📥 1. Signalement reçu et enregistré",
+    adminModalStep2: "🔍 2. Inspection sur le terrain (Bureau Municipal d'Hygiène BMH)",
+    adminModalStep3: "⚙️ 3. Mesures administratives et exécution en cours",
+    adminModalStep4: "✅ 4. Signalement traité et clôturé avec succès"
   }
 };
 

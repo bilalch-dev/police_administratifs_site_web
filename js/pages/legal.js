@@ -208,12 +208,30 @@ function renderGovernancePrinciplesDetailed() {
   const t = getTranslation();
   if (!container || !t || !t.principles) return;
 
+  const lang = getLang();
+
   container.innerHTML = t.principles.map(p => `
-    <div style="background:var(--bg-surface-elevated); padding:1.75rem; border-radius:var(--radius-lg); border:1px solid var(--border-color); box-shadow:var(--shadow-sm);">
-      <h4 style="font-size:1.2rem; color:var(--primary-light); margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;">
-        <span>⚖️</span> ${p.title}
-      </h4>
-      <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7;">${p.desc}</p>
+    <div class="glass-panel fade-in" style="padding:1.75rem; display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid var(--primary-light); box-shadow:var(--shadow-sm);">
+      <div>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+          <div style="width:44px; height:44px; border-radius:var(--radius-md); background:rgba(13,148,136,0.1); display:flex; align-items:center; justify-content:center; font-size:1.4rem;">
+            ${p.icon || '⚖️'}
+          </div>
+          ${p.badge ? `<span class="ticker-badge" style="font-size:0.75rem;">${p.badge}</span>` : ''}
+        </div>
+        <h4 style="font-size:1.15rem; color:var(--text-main); margin-bottom:0.75rem;">
+          ${p.title}
+        </h4>
+        <p style="color:var(--text-muted); font-size:0.925rem; line-height:1.7; margin-bottom:1.25rem;">
+          ${p.desc}
+        </p>
+      </div>
+      ${p.rule ? `
+        <div style="background:var(--bg-main); padding:0.75rem 1rem; border-radius:var(--radius-md); ${lang === 'ar' ? 'border-right:3px solid var(--accent)' : 'border-left:3px solid var(--accent)'}; font-size:0.85rem; color:var(--text-muted);">
+          <strong style="color:var(--text-main); display:block; margin-bottom:0.25rem;">${lang === 'ar' ? '📌 الضابط القانوني:' : '📌 Règle juridique :'}</strong>
+          ${p.rule}
+        </div>
+      ` : ''}
     </div>
   `).join('');
 }

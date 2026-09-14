@@ -13,6 +13,9 @@ function updateResourcesStaticLabels() {
   const lang = getLang();
 
   // Breadcrumbs & Headers
+  const breadcrumbHome = document.querySelector('.hero-section .container div a');
+  if (breadcrumbHome) breadcrumbHome.innerText = lang === 'ar' ? 'الرئيسية' : 'Accueil';
+
   const breadcrumb = document.querySelector('.hero-section .container div span:last-child');
   if (breadcrumb) breadcrumb.innerText = lang === 'ar' ? 'المكتبة الرقمية والمعجم' : 'Ressources & Lexique';
 
@@ -27,48 +30,73 @@ function updateResourcesStaticLabels() {
     ? 'قاموس قانوني تفاعلي يضم الشرح والتعريف المفصل لأهم مصطلحات الشرطة الإدارية الجماعية المقتبسة من الدليل الرسمي والنصوص التشريعية المغربية.'
     : 'Dictionnaire juridique interactif avec définitions détaillées des termes de la police administrative issus des textes législatifs marocains.';
 
-  // Section Headers
-  const secTags = document.querySelectorAll('.section-tag');
-  const secTitles = document.querySelectorAll('.section-title');
-  const secDescs = document.querySelectorAll('.section-desc');
+  // Section 1: Glossary Headers
+  const glossarySection = document.querySelector('section:nth-of-type(2)');
+  if (glossarySection) {
+    const tag = glossarySection.querySelector('.section-tag');
+    if (tag) tag.innerText = lang === 'ar' ? 'القاموس القانوني التفاعلي' : 'Lexique Juridique Interactif';
 
-  if (secTags.length >= 2) {
-    secTags[0].innerText = lang === 'ar' ? 'القاموس القانوني التفاعلي' : 'Lexique Juridique Interactif';
-    secTags[1].innerText = lang === 'ar' ? 'الوثائق والنصوص المرجعية' : 'Textes de Référence';
-  }
+    const title = glossarySection.querySelector('.section-title');
+    if (title) title.innerText = lang === 'ar' ? 'معجم مصطلحات الشرطة الإدارية' : 'Lexique de la Police Administrative';
 
-  if (secTitles.length >= 2) {
-    secTitles[0].innerText = lang === 'ar' ? 'معجم مصطلحات الشرطة الإدارية' : 'Lexique de la Police Administrative';
-    secTitles[1].innerText = lang === 'ar' ? 'المكتبة التشريعية والنصوص المؤطرة' : 'Bibliothèque Législative';
-  }
-
-  if (secDescs.length >= 2) {
-    secDescs[0].innerText = lang === 'ar' ? 'ابحث في المصطلحات والتعاريف الفقهية أو صفّها حسب الحرف الأبجدي.' : 'Recherchez un terme juridique ou filtrez par ordre alphabétique.';
-    secDescs[1].innerText = lang === 'ar' ? 'النصوص والمراسيم الصادرة في الجريدة الرسمية والمتعلقة بممارسة الشرطة الإدارية الجماعية.' : 'Lois, décrets et dahirs régissant la police administrative communale au Maroc.';
+    const desc = glossarySection.querySelector('.section-desc');
+    if (desc) desc.innerText = lang === 'ar' 
+      ? 'ابحث في المصطلحات والتعاريف الفقهية أو صفّها حسب الحرف الأبجدي.' 
+      : 'Recherchez un terme juridique ou filtrez par ordre alphabétique.';
   }
 
   const searchInput = document.getElementById('glossary-search-input');
   if (searchInput) searchInput.placeholder = lang === 'ar' ? 'ابحث عن مصطلح قانوني (مثال: السكينة العامة، التنفيذ التلقائي...)' : 'Rechercher un terme (ex: Ordre Public, Exécution d\'office...)';
 
-  // Legal Decree Cards
-  const decreeCards = document.querySelectorAll('section:nth-of-type(2) .glass-panel');
-  if (decreeCards.length >= 4) {
-    if (lang === 'fr') {
-      decreeCards[0].querySelector('span').innerText = 'Charte Communale';
-      decreeCards[0].querySelector('h4').innerText = 'Loi n° 78.00 modifiée par la Loi 17.08';
-      decreeCards[0].querySelector('p').innerText = 'Texte fondamental définissant les compétences du Maire (art. 50, 52, 53) et du Conseil (art. 37 à 40).';
+  // Section 2: Legislative Library Section & Cards
+  const libSection = document.getElementById('legislative-library') || document.querySelector('section:nth-of-type(3)');
+  if (libSection) {
+    const tag = libSection.querySelector('.section-tag');
+    if (tag) tag.innerText = lang === 'ar' ? 'الوثائق والنصوص المرجعية' : 'Textes de Référence';
 
-      decreeCards[1].querySelector('span').innerText = 'Exécution d\'Office';
-      decreeCards[1].querySelector('h4').innerText = 'Décret n° 2.78.157 (26 mai 1980)';
-      decreeCards[1].querySelector('p').innerText = 'Conditions d\'exécution d\'office des arrêtés de voirie, de salubrité et de tranquillité publique.';
+    const title = libSection.querySelector('.section-title');
+    if (title) title.innerText = lang === 'ar' ? 'المكتبة التشريعية والنصوص المؤطرة' : 'Bibliothèque Législative';
 
-      decreeCards[2].querySelector('span').innerText = 'Établissements Classés';
-      decreeCards[2].querySelector('h4').innerText = 'Dahir du 17 août 1914';
-      decreeCards[2].querySelector('p').innerText = 'Réglementation des établissements insalubres, incommodes ou dangereux et leur classification en 3 catégories.';
+    const desc = libSection.querySelector('.section-desc');
+    if (desc) desc.innerText = lang === 'ar' 
+      ? 'النصوص والمراسيم الصادرة في الجريدة الرسمية والمتعلقة بممارسة الشرطة الإدارية الجماعية.' 
+      : 'Lois, décrets et dahirs régissant la police administrative communale au Maroc.';
 
-      decreeCards[3].querySelector('span').innerText = 'Urbanisme';
-      decreeCards[3].querySelector('h4').innerText = 'Loi n° 12.90 relative à l\'Urbanisme';
-      decreeCards[3].querySelector('p').innerText = 'Règles relatives aux permis de construire, d\'habiter, certificats de conformité et voirie.';
+    const decreeCards = libSection.querySelectorAll('.glass-panel');
+    if (decreeCards.length >= 4) {
+      if (lang === 'fr') {
+        decreeCards[0].querySelector('span').innerText = 'Charte Communale';
+        decreeCards[0].querySelector('h4').innerText = 'Loi n° 78.00 modifiée par la Loi 17.08';
+        decreeCards[0].querySelector('p').innerText = 'Texte fondamental définissant les compétences du Maire (art. 50, 52, 53) et du Conseil (art. 37 à 40).';
+
+        decreeCards[1].querySelector('span').innerText = "Exécution d'Office";
+        decreeCards[1].querySelector('h4').innerText = 'Décret n° 2.78.157 (26 mai 1980)';
+        decreeCards[1].querySelector('p').innerText = "Conditions d'exécution d'office des arrêtés de voirie, de salubrité et de tranquillité publique.";
+
+        decreeCards[2].querySelector('span').innerText = 'Établissements Classés';
+        decreeCards[2].querySelector('h4').innerText = 'Dahir du 17 août 1914';
+        decreeCards[2].querySelector('p').innerText = 'Réglementation des établissements insalubres, incommodes ou dangereux et leur classification en 3 catégories.';
+
+        decreeCards[3].querySelector('span').innerText = 'Urbanisme';
+        decreeCards[3].querySelector('h4').innerText = "Loi n° 12.90 relative à l'Urbanisme";
+        decreeCards[3].querySelector('p').innerText = "Règles relatives aux permis de construire, d'habiter, certificats de conformité et voirie.";
+      } else {
+        decreeCards[0].querySelector('span').innerText = 'الميثاق الجماعي';
+        decreeCards[0].querySelector('h4').innerText = 'القانون رقم 78.00 المعدل بالقانون 17.08';
+        decreeCards[0].querySelector('p').innerText = 'النص الأساسي المحدد لاختصاصات رئيس الجماعة في المواد 50، 52، و53 والمجلس الجماعي في المواد 37 إلى 40.';
+
+        decreeCards[1].querySelector('span').innerText = 'التنفيذ التلقائي';
+        decreeCards[1].querySelector('h4').innerText = 'المرسوم رقم 2.78.157 (26 ماي 1980)';
+        decreeCards[1].querySelector('p').innerText = 'تحديد الشروط والإجراءات التي تنفذ بها تلقائياً التدابير الرامية إلى ضمان سلامة المرور والصحة العمومية والسكينة.';
+
+        decreeCards[2].querySelector('span').innerText = 'المؤسسات المرتبة';
+        decreeCards[2].querySelector('h4').innerText = 'ظهير 25 شوال 1332 (17 أغسطس 1914)';
+        decreeCards[2].querySelector('p').innerText = 'الظهير الشريف المنظم للمؤسسات المضرة أو المزعجة أو الخطيرة وتحديد درجات تصنيفها وضوابط فتحها وإغلاقها.';
+
+        decreeCards[3].querySelector('span').innerText = 'قوانين التعمير';
+        decreeCards[3].querySelector('h4').innerText = 'القانون رقم 12.90 المتعلق بالتعمير';
+        decreeCards[3].querySelector('p').innerText = 'ضوابط رخص البناء، السكن، شهادات المطابقة، ورخص احتلال الملك العمومي لغرض البناء وزجر المخالفات.';
+      }
     }
   }
 }

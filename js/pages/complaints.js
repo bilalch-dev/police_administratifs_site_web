@@ -18,6 +18,9 @@ function updateComplaintsStaticLabels() {
   const t = getTranslation();
 
   // Breadcrumbs & Headers
+  const breadcrumbHome = document.querySelector('.hero-section .container div a');
+  if (breadcrumbHome) breadcrumbHome.innerText = lang === 'ar' ? 'الرئيسية' : 'Accueil';
+
   const breadcrumb = document.querySelector('.hero-section .container div span:last-child');
   if (breadcrumb) breadcrumb.innerText = t.compBreadcrumb;
 
@@ -94,23 +97,38 @@ function updateComplaintsStaticLabels() {
   if (recentTitle) recentTitle.innerText = t.recentComplaintsTitle;
 
   // FAQ Section
-  const faqTag = document.querySelector('section:nth-of-type(3) .section-tag');
-  if (faqTag) faqTag.innerText = t.faqTag;
+  const faqSection = document.getElementById('complaints-faq') || document.querySelector('section:nth-of-type(3)');
+  if (faqSection) {
+    const faqTag = faqSection.querySelector('.section-tag');
+    if (faqTag) faqTag.innerText = t.faqTag;
 
-  const faqTitle = document.querySelector('section:nth-of-type(3) .section-title');
-  if (faqTitle) faqTitle.innerText = t.faqTitle;
+    const faqTitle = faqSection.querySelector('.section-title');
+    if (faqTitle) faqTitle.innerText = t.faqTitle;
 
-  const faqCards = document.querySelectorAll('section:nth-of-type(3) .glass-panel');
-  if (faqCards.length >= 3) {
-    if (lang === 'fr') {
-      faqCards[0].querySelector('h4').innerText = 'Combien de temps prend le traitement ?';
-      faqCards[0].querySelector('p').innerText = 'L\'inspection sur le terrain pour les urgences s\'effectue sous 24h à 48h.';
+    const faqDesc = faqSection.querySelector('.section-desc');
+    if (faqDesc) faqDesc.innerText = t.faqDesc;
 
-      faqCards[1].querySelector('h4').innerText = 'Mes données sont-elles protégées ?';
-      faqCards[1].querySelector('p').innerText = 'Oui, l\'identité du déclarant reste strictly confidentielle.';
+    const faqCards = faqSection.querySelectorAll('.glass-panel');
+    if (faqCards.length >= 3) {
+      if (lang === 'fr') {
+        faqCards[0].querySelector('h4').innerText = 'Combien de temps prend le traitement ?';
+        faqCards[0].querySelector('p').innerText = "L'inspection sur le terrain pour les urgences s'effectue sous 24h à 48h.";
 
-      faqCards[2].querySelector('h4').innerText = 'Et en cas de refus du contrevenant ?';
-      faqCards[2].querySelector('p').innerText = 'Le Maire procède à l\'exécution d\'office avec réquisition de la force publique.';
+        faqCards[1].querySelector('h4').innerText = 'Mes données sont-elles protégées ?';
+        faqCards[1].querySelector('p').innerText = "Oui, l'identité du déclarant reste strictement confidentielle.";
+
+        faqCards[2].querySelector('h4').innerText = 'Et en cas de refus du contrevenant ?';
+        faqCards[2].querySelector('p').innerText = "Le Maire procède à l'exécution d'office avec réquisition de la force publique.";
+      } else {
+        faqCards[0].querySelector('h4').innerText = 'كم تستغرق المعالجة؟';
+        faqCards[0].querySelector('p').innerText = 'تتم المعاينة الميدانية للبلاغات المستعجلة (كالنفايات أو الكلاب الضالة) خلال 24 إلى 48 ساعة من تاريخ التسجيل.';
+
+        faqCards[1].querySelector('h4').innerText = 'هل معطياتي محمية؟';
+        faqCards[1].querySelector('p').innerText = 'نعم، تبقى هوية المصرح محمية وتستعمل فقط للتواصل وإفادته بملف المتابعة دون الكشف عنها للمخالف.';
+
+        faqCards[2].querySelector('h4').innerText = 'ماذا لو رفض المخالف؟';
+        faqCards[2].querySelector('p').innerText = 'يلجأ رئيس الجماعة إلى التنفيذ التلقائي (Exécution d\'office) واستخدام القوة العمومية لتطبيقه على نفقة المخالف.';
+      }
     }
   }
 }

@@ -13,16 +13,19 @@ function updateDomainsStaticLabels() {
   const lang = getLang();
 
   // Breadcrumbs & Headers
+  const breadcrumbHome = document.querySelector('.hero-section .container div a');
+  if (breadcrumbHome) breadcrumbHome.innerText = lang === 'ar' ? 'الرئيسية' : 'Accueil';
+
   const breadcrumb = document.querySelector('.hero-section .container div span:last-child');
   if (breadcrumb) breadcrumb.innerText = lang === 'ar' ? 'مجالات التدخل' : 'Domaines d\'Intervention';
 
   const heroTag = document.querySelector('.hero-section .section-tag');
   if (heroTag) heroTag.innerText = lang === 'ar' ? 'الدليل العملي والمجالي' : 'Guide Pratique par Domaine';
 
-  const heroTitle = document.querySelector('.hero-section .hero-title');
+  const heroTitle = document.querySelector('.hero-title');
   if (heroTitle) heroTitle.innerText = lang === 'ar' ? 'مجالات وميادين التدخل للشرطة الإدارية الجماعية' : 'Domaines d\'Intervention de la Police Administrative';
 
-  const heroDesc = document.querySelector('.hero-section .hero-description');
+  const heroDesc = document.querySelector('.hero-description');
   if (heroDesc) heroDesc.innerText = lang === 'ar'
     ? 'جرد شامل ومفصل لجميع القطاعات الحيوية المنصوص عليها في الميثاق الجماعي والأنظمة العامة لحفظ الصحة والنظافة العامة، السلامة الطرقية، حماية البيئة والوسط القروي.'
     : 'Inventaire détaillé de tous les secteurs régis par la Charte Communale pour la salubrité publique, la sécurité routière et l\'environnement.';
@@ -37,32 +40,59 @@ function updateDomainsStaticLabels() {
   }
 
   // Classified Establishments Section
-  const specTag = document.querySelector('section:nth-of-type(3) .section-tag');
-  if (specTag) specTag.innerText = lang === 'ar' ? 'الأنشطة المزعجة والخطيرة' : 'Établissements Incommodes & Dangereux';
+  const specSection = document.getElementById('classified-establishments') || document.querySelector('section:nth-of-type(3)');
+  if (specSection) {
+    const specTag = specSection.querySelector('.section-tag');
+    if (specTag) specTag.innerText = lang === 'ar' ? 'الأنشطة المزعجة والخطيرة' : 'Établissements Incommodes & Dangereux';
 
-  const specTitle = document.querySelector('section:nth-of-type(3) .section-title');
-  if (specTitle) specTitle.innerText = lang === 'ar' ? 'تصنيف المؤسسات المرتبة (Établissements Classés)' : 'Classification des Établissements Classés';
+    const specTitle = specSection.querySelector('.section-title');
+    if (specTitle) specTitle.innerText = lang === 'ar' ? 'تصنيف المؤسسات المرتبة (Établissements Classés)' : 'Classification des Établissements Classés';
 
-  const specDesc = document.querySelector('section:nth-of-type(3) .section-desc');
-  if (specDesc) specDesc.innerText = lang === 'ar' 
-    ? 'وفقاً لظهير 1914 والمادة 50، تنقسم المؤسسات المضرة أو الخطيرة إلى 3 درجات محددة لحماية السكان من التلوث والإزعاج.'
-    : 'Selon le dahir de 1914 et l\'art. 50, les établissements classés sont divisés en 3 catégories.';
+    const specDesc = specSection.querySelector('.section-desc');
+    if (specDesc) specDesc.innerText = lang === 'ar' 
+      ? 'وفقاً لظهير 1914 والمادة 50، تنقسم المؤسسات المضرة أو الخطيرة إلى 3 درجات محددة لحماية السكان من التلوث والإزعاج.'
+      : 'Selon le dahir de 1914 et l\'art. 50, les établissements classés sont divisés en 3 catégories pour protéger la population contre les nuisances et la pollution.';
 
-  // Class Cards
-  const classCards = document.querySelectorAll('section:nth-of-type(3) .glass-panel');
-  if (classCards.length >= 3) {
-    if (lang === 'fr') {
-      classCards[0].querySelector('.ticker-badge').innerText = '1ère Classe (Haute Dangerosité)';
-      classCards[0].querySelector('h3').innerText = 'Établissements de 1ère Classe';
-      classCards[0].querySelector('p').innerText = 'Autorisation et fermeture réservées au Ministre des Travaux Publics. Établissements créant des risques environnementaux majeurs.';
+    // Class Cards
+    const classCards = specSection.querySelectorAll('.glass-panel');
+    if (classCards.length >= 3) {
+      if (lang === 'fr') {
+        classCards[0].querySelector('.ticker-badge').innerText = '1ère Classe (Haute Dangerosité)';
+        classCards[0].querySelector('h3').innerText = 'Établissements de 1ère Classe';
+        classCards[0].querySelector('p').innerText = 'Autorisation et fermeture réservées au Ministre des Travaux Publics. Établissements créant des risques environnementaux majeurs.';
+        const ex0 = classCards[0].querySelector('div[style*="background:var(--bg-main)"]') || classCards[0].querySelector('div');
+        if (ex0) ex0.innerHTML = '<strong>Exemples :</strong> Usines d\'engrais chimiques, raffineries, grands complexes industriels polluants pour l\'eau et l\'air.';
 
-      classCards[1].querySelector('.ticker-badge').innerText = '2ème Classe (Risque Moyen)';
-      classCards[1].querySelector('h3').innerText = 'Établissements de 2ème Classe';
-      classCards[1].querySelector('p').innerText = 'Autorisation et contrôle délivrés par le Maire pour préserver la salubrité publique.';
+        classCards[1].querySelector('.ticker-badge').innerText = '2ème Classe (Risque Moyen)';
+        classCards[1].querySelector('h3').innerText = 'Établissements de 2ème Classe';
+        classCards[1].querySelector('p').innerText = 'Autorisation et contrôle délivrés par le Maire pour préserver la salubrité publique.';
+        const ex1 = classCards[1].querySelector('div[style*="background:var(--bg-main)"]') || classCards[1].querySelector('div');
+        if (ex1) ex1.innerHTML = '<strong>Exemples :</strong> Dépôts d\'hydrocarbures, ateliers de menuiserie et grands entrepôts commerciaux.';
 
-      classCards[2].querySelector('.ticker-badge').innerText = '3ème Classe (Risque Limité)';
-      classCards[2].querySelector('h3').innerText = 'Établissements de 3ème Classe';
-      classCards[2].querySelector('p').innerText = 'Autorisés sur simple déclaration auprès du Maire avec délivrance d\'un récépissé.';
+        classCards[2].querySelector('.ticker-badge').innerText = '3ème Classe (Risque Limité)';
+        classCards[2].querySelector('h3').innerText = 'Établissements de 3ème Classe';
+        classCards[2].querySelector('p').innerText = 'Autorisés sur simple déclaration auprès du Maire avec délivrance d\'un récépissé.';
+        const ex2 = classCards[2].querySelector('div[style*="background:var(--bg-main)"]') || classCards[2].querySelector('div');
+        if (ex2) ex2.innerHTML = '<strong>Exemples :</strong> Ateliers de peinture, petite ferronnerie et commerces de proximité simples.';
+      } else {
+        classCards[0].querySelector('.ticker-badge').innerText = 'الدرجة الأولى (أعلى درجة خطورة)';
+        classCards[0].querySelector('h3').innerText = 'مؤسسات الدرجة الأولى';
+        classCards[0].querySelector('p').innerText = 'يختص بالترخيص بفتحها وإغلاقها وزير الأشغال العمومية. وهي المنشآت التي قد تحدِث تلوثاً حاداً أو مخاطر كبرى على الصحة العامة.';
+        const ex0 = classCards[0].querySelector('div[style*="background:var(--bg-main)"]') || classCards[0].querySelector('div');
+        if (ex0) ex0.innerHTML = '<strong>أمثلة:</strong> معامل الأسمدة، الكيماويات، المصانع الضخمة الملوثة للمياه والهواء.';
+
+        classCards[1].querySelector('.ticker-badge').innerText = 'الدرجة الثانية (خطورة متوسطة)';
+        classCards[1].querySelector('h3').innerText = 'مؤسسات الدرجة الثانية';
+        classCards[1].querySelector('p').innerText = 'يرجع الاختصاص في الترخيص بها وإغلاقها عند المخالفة إلى رئيس المجلس الجماعي لحفظ الصحة العامة والبيئة.';
+        const ex1 = classCards[1].querySelector('div[style*="background:var(--bg-main)"]') || classCards[1].querySelector('div');
+        if (ex1) ex1.innerHTML = '<strong>أمثلة:</strong> مستودعات المحروقات، ورشات النجارة والمستودعات التجارية الكبرى.';
+
+        classCards[2].querySelector('.ticker-badge').innerText = 'الدرجة الثالثة (خطورة محدودة)';
+        classCards[2].querySelector('h3').innerText = 'مؤسسات الدرجة الثالثة';
+        classCards[2].querySelector('p').innerText = 'يعود الاختصاص فيها إلى رئيس الجماعة، وتفتح بمجرد تقديم تصريح محدد إلى السلطات الجماعية وتسلم وصل.';
+        const ex2 = classCards[2].querySelector('div[style*="background:var(--bg-main)"]') || classCards[2].querySelector('div');
+        if (ex2) ex2.innerHTML = '<strong>أمثلة:</strong> ورشات الصباغة، الحدادة الصغرى والمحلات التجارية البسيطة.';
+      }
     }
   }
 }

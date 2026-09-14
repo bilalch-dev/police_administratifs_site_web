@@ -62,17 +62,6 @@ function renderSharedHeader() {
 
   headerEl.className = 'site-header';
   headerEl.innerHTML = `
-    <!-- Ticker Bar -->
-    <div class="ticker-bar">
-      <div class="container ticker-content">
-        <span class="ticker-badge">${t.tickerBadge}</span>
-        <div class="ticker-text">
-          <span>${t.tickerNotice}</span>
-        </div>
-        <a href="Guide_police_administrative.pdf" target="_blank" class="ticker-badge" style="background:#ffffff; color:#0f172a;">${t.downloadPdf}</a>
-      </div>
-    </div>
-
     <!-- Main Navigation -->
     <div class="container navbar">
       <a href="index.html" class="logo-brand">
@@ -90,7 +79,7 @@ function renderSharedHeader() {
         <a href="procedures.html" class="nav-link ${currentPath === 'procedures.html' ? 'active' : ''}">${t.navProcedures}</a>
         <a href="complaints.html" class="nav-link ${currentPath === 'complaints.html' ? 'active' : ''}">${t.navComplaints}</a>
         <a href="resources.html" class="nav-link ${currentPath === 'resources.html' ? 'active' : ''}">${t.navResources}</a>
-        <a href="admin.html" class="nav-link ${currentPath === 'admin.html' ? 'active' : ''}" style="color:var(--primary-light); font-weight:800;">🔐 ${t.navAdmin}</a>
+        <a href="admin.html" class="nav-link ${currentPath === 'admin.html' ? 'active' : ''}" style="color:var(--primary-light); font-weight:800;"> ${t.navAdmin}</a>
       </nav>
 
       <div class="nav-actions">
@@ -136,7 +125,7 @@ function renderSharedFooter() {
             <li><a href="legal.html">${t.navLegal}</a></li>
             <li><a href="domains.html">${t.navDomains}</a></li>
             <li><a href="procedures.html">${t.navProcedures}</a></li>
-            <li><a href="admin.html">🔐 ${t.navAdmin}</a></li>
+            <li><a href="admin.html"> ${t.navAdmin}</a></li>
           </ul>
         </div>
 

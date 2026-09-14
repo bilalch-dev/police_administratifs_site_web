@@ -84,14 +84,20 @@ function updateHomeStaticLabels() {
   }
 
   // Citizen Callout
-  const citizenTitle = document.querySelector('.container:last-of-type .glass-panel h2');
-  if (citizenTitle) citizenTitle.innerText = t.citizenTitle;
+  const citizenSection = document.getElementById('home-citizen-cta') || document.querySelector('.container:last-of-type');
+  if (citizenSection) {
+    const citizenTag = citizenSection.querySelector('.section-tag');
+    if (citizenTag) citizenTag.innerText = t.citizenTag || (lang === 'ar' ? 'خدمة المواطن' : 'Service Citoyen');
 
-  const citizenDesc = document.querySelector('.container:last-of-type .glass-panel p');
-  if (citizenDesc) citizenDesc.innerText = t.citizenDesc;
+    const citizenTitle = citizenSection.querySelector('h2');
+    if (citizenTitle) citizenTitle.innerText = t.citizenTitle;
 
-  const citizenBtn = document.querySelector('.container:last-of-type .glass-panel .btn-primary');
-  if (citizenBtn) citizenBtn.innerText = t.citizenBtn;
+    const citizenDesc = citizenSection.querySelector('p');
+    if (citizenDesc) citizenDesc.innerText = t.citizenDesc;
+
+    const citizenBtn = citizenSection.querySelector('.btn-primary');
+    if (citizenBtn) citizenBtn.innerText = t.citizenBtn;
+  }
 
   // PDF Banner
   const pdfTitle = document.querySelector('.pdf-banner-content h3');
