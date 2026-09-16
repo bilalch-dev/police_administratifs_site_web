@@ -233,5 +233,5 @@ Le pipeline CI/CD automatisé (`.github/workflows/ci.yml`) exécute :
 
 ## 👤 Auteur & Contact
 
-- **Développeur & Concepteur** : [Bilal (bilalch-dev)](https://github.com/bilalch-dev)
+- **Développeurs & Concepteurs** : [Bilal (bilalch-dev)](https://github.com/bilalch-dev) & [Hafsa (hafsa-gi)](https://github.com/hafsa-gi)
 - **Projet** : Stage de Fin d'Études / Stage d'Application — Police Administrative Communale de Taza.
